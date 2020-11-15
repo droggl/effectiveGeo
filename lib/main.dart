@@ -1,21 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:effective_geo/country_table.dart';
+import 'package:effective_geo/pages/home.dart';
+import 'package:effective_geo/pages/country_table.dart';
+import 'package:effective_geo/pages/loading.dart';
+import 'package:effective_geo/pages/settings.dart';
 
 
-void main(){
-  runApp(MyApp());
-}
+void main() => runApp(MaterialApp(
+  initialRoute: '/home',
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Country Table',
-        theme: ThemeData(
-          primaryColor: Colors.purple,
-        ),
-        home: CountryTable());
-  }
-}
+  routes: {
+    '/': (context) => Loading(),
+    '/home':(context) =>Home(),
+    '/settings':(context) =>Settings(),
+    '/country_table':(context) =>CountryTable()
+
+  },
+)); // Material app
 
