@@ -104,8 +104,9 @@ class _HomeState extends State<Home> {
               height: 20,
             ),
 
-            Image.network("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-1.2."
-                "1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"),
+            // Image.network("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-1.2."
+            //     "1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"),
+            Image.asset("assets/welt.jpg"),
             SizedBox(
               height: 40,
             ),
