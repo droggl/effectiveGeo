@@ -8,6 +8,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   double prozenti = 20;
+  int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,6 +150,7 @@ class _HomeState extends State<Home> {
 
 
       ),
+
 
 
     );

@@ -3,17 +3,21 @@ import 'package:effective_geo/pages/home.dart';
 import 'package:effective_geo/pages/country_table.dart';
 import 'package:effective_geo/pages/loading.dart';
 import 'package:effective_geo/pages/settings.dart';
-
+import 'package:effective_geo/pages/navigation.dart';
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/home',
+  initialRoute: '/navigation',
+
+
 
   routes: {
     '/': (context) => Loading(),
     '/home':(context) =>Home(),
     '/settings':(context) =>Settings(),
-    '/country_table':(context) =>CountryTable()
+    '/country_table':(context) =>CountryTable(),
+    '/navigation': (context) =>Navigation()
 
   },
+
 )); // Material app
 
