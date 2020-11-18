@@ -14,7 +14,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[850],
-      body: Column(
+      body: SingleChildScrollView(
+        child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -153,7 +154,7 @@ class _HomeState extends State<Home> {
       ),
 
 
-
+      ),
     );
   }
 }
