@@ -12,6 +12,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
+
     return Scaffold(
       backgroundColor: Colors.grey[850],
       body: SingleChildScrollView(
@@ -60,7 +63,7 @@ class _HomeState extends State<Home> {
             ),
 
             SizedBox(
-              height: 50,
+              height: queryData.size.height/35,
             ),
 
             Row(
@@ -104,14 +107,24 @@ class _HomeState extends State<Home> {
             ),
 
             SizedBox(
-              height: 20,
+              height: queryData.size.height/40,
             ),
 
             // Image.network("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-1.2."
             //     "1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"),
-            Image.asset("assets/welt.jpg"),
+
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: AspectRatio(
+                aspectRatio: 100/60,
+                child: Image.asset("assets/welt.jpg",
+                  width: queryData.size.height/35,
+                ),
+              ),
+            ),
+
             SizedBox(
-              height: 40,
+              height: queryData.size.height/40,
             ),
 
             Text(
