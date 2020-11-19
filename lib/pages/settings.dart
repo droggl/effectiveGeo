@@ -9,8 +9,7 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Scaffold(
+    return Scaffold(
       backgroundColor: Colors.blue[800],
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
@@ -29,7 +28,7 @@ class _SettingsState extends State<Settings> {
       body: Column(
 
       ),
-        ),
+
     );
   }
 }

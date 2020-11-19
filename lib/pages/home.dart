@@ -63,7 +63,7 @@ class _HomeState extends State<Home> {
             ),
 
             SizedBox(
-              height: queryData.size.height/35,
+              height: queryData.size.height/14,
             ),
 
             Row(
@@ -107,21 +107,19 @@ class _HomeState extends State<Home> {
             ),
 
             SizedBox(
-              height: queryData.size.height/40,
+              height: queryData.size.height/30,
             ),
 
             // Image.network("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-1.2."
             //     "1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"),
 
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: AspectRatio(
-                aspectRatio: 100/60,
-                child: Image.asset("assets/welt.jpg",
-                  width: queryData.size.height/35,
+
+
+            Image.asset("assets/welt.jpg",
+                  width: queryData.size.height/2.1,
+              //height: queryData.size.height/1.5,
                 ),
-              ),
-            ),
+
 
             SizedBox(
               height: queryData.size.height/40,

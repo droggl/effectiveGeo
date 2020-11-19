@@ -41,7 +41,7 @@ class _NavigationState extends State<Navigation> {
               activeIcon: Icon(
                 Icons.home,
                 color: Colors.amber,
-                size: 25,
+                size: 25,  //size rausnehmen
               ),
                 icon: Icon(Icons.home,
                     color: Colors.grey[800]),
@@ -52,7 +52,7 @@ class _NavigationState extends State<Navigation> {
               activeIcon: Icon(
                 Icons.flag,
                 color: Colors.amber,
-                size: 25,
+                size: 25,  //size rausnehmen
               ),
                 icon: Icon(Icons.flag,
                   color: Colors.grey[800],
@@ -64,7 +64,7 @@ class _NavigationState extends State<Navigation> {
                 activeIcon: Icon(
                   Icons.plus_one,
                   color: Colors.amber,
-                  size: 25,
+                  size: 25,   //size rausnehmen
                 ),
                 icon: Icon(Icons.plus_one,
                   color: Colors.grey[800],),
