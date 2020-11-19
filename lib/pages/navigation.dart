@@ -27,6 +27,7 @@ class _NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     return Scaffold(
         body:  routeList[currentIndex],
+        backgroundColor: Colors.grey[850],
 
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
@@ -71,7 +72,6 @@ class _NavigationState extends State<Navigation> {
                 label: "..."
 
             ),
-
           ],
         )
     );

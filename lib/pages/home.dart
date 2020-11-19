@@ -70,6 +70,9 @@ class _HomeState extends State<Home> {
               children: [
                 FlatButton(
                   padding: EdgeInsets.fromLTRB(65, 0, 0, 0),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/flashcard");
+                  },
                   child: Container(
                     padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
                     decoration: BoxDecoration(
