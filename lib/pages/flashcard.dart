@@ -6,11 +6,11 @@ class Flashcard extends StatefulWidget {
 }
 
 class _FlashcardState extends State<Flashcard> {
+  bool showAnswer = false;
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
-    bool showAnswer = false;
     return Scaffold(
       backgroundColor: Colors.grey[850],
       body: Center(
@@ -64,15 +64,16 @@ class _FlashcardState extends State<Flashcard> {
             ),
           ),
 
-          FlatButton(
+          RaisedButton(
             padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
             onPressed: () {
               showAnswer = true;
+              setState(() {});
             },
+            color: Colors.grey[900],
             child: Container(
               padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
               decoration: BoxDecoration(
-                  color: Colors.grey[900],
                   // border: Border.all(
                   //   color: Colors.amber,
                   // ),
@@ -91,10 +92,10 @@ class _FlashcardState extends State<Flashcard> {
             ),
           ),
 
-
         ],
       ),
     ),
     );
+
   }
 }
