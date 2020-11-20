@@ -10,51 +10,62 @@ class _HomeState extends State<Home> {
   double prozenti = 20;
   int currentIndex = 0;
 
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
+    double space_one = queryData.size.height/25;
+    double space_three = queryData.size.height/35;
+    double space_five = queryData.size.height/50;
 
     return Scaffold(
       backgroundColor: Colors.grey[850],
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(
+              height: space_five,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                SafeArea(
-                  child: Container(
+                Expanded(
+                  child: SizedBox(
 
-                    margin: EdgeInsets.fromLTRB(0, 30, 50, 25),
-                    decoration: BoxDecoration(
-                        color: Colors.grey[850],
-                        borderRadius: BorderRadius.all(Radius.circular(20))
-                    ),
-                    //padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                    child: Text(
-                      "Effective Geo",
-                      style: TextStyle(
-                          color: Colors.amber,
-                          fontSize: 23,
-                          letterSpacing: 3
+                  ),
+                  flex: 1,
+                ),
+
+                Expanded(
+                  flex: 2,
+                  child: SafeArea(
+                      child: Text(
+                        "Effective Geo",
+                        style: TextStyle(
+                            color: Colors.amber,
+                            fontSize: 23,
+                            letterSpacing: 3
+                        ),
                       ),
-                    ),
+
                   ),
                 ),
 
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                  child: SafeArea(
-                    child: IconButton(
-                      padding: EdgeInsets.fromLTRB(0, 0,0, 0),
-                      onPressed: (){
-                        Navigator.pushNamed(context, "/settings");
-                      },
-                      icon: Icon(
-                        Icons.settings,
-                        color: Colors.grey,
-                        size: 35,
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(space_one, 0, 0, 0),
+                    child: SafeArea(
+                      child: IconButton(
+                        onPressed: (){
+                          Navigator.pushNamed(context, "/settings");
+                        },
+                        icon: Icon(
+                          Icons.settings,
+                          color: Colors.grey,
+                          size: 35,
+                        ),
                       ),
                     ),
                   ),
@@ -63,45 +74,52 @@ class _HomeState extends State<Home> {
             ),
 
             SizedBox(
-              height: queryData.size.height/14,
+              height: queryData.size.height/11,
+
             ),
 
             Row(
               children: [
-                FlatButton(
-                  padding: EdgeInsets.fromLTRB(65, 0, 0, 0),
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/flashcard");
-                  },
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
-                    decoration: BoxDecoration(
-                        color: Colors.grey[900],
-                        border: Border.all(
-                          color: Colors.amber,
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(20),
-                        )
-                    ),
-                    child: (
-                        Text("Start learning.",
-                          style: TextStyle(
-                            color: Colors.amber,
-                            fontSize: 23,
-                            letterSpacing: 3,
+                Expanded(
+                  flex: 1,
+                  child: SizedBox(
 
-                          ),
-                        )
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: RaisedButton(
+                    padding: EdgeInsets.fromLTRB(space_three, space_three, space_three, space_three),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      side: BorderSide(
+                        color: Colors.amber
+                      )
+                    ),
+                    color: Colors.grey[900],
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/flashcard");
+                    },
+                    child: Text(
+                      "Start Learning",
+                      style: TextStyle(
+                        color: Colors.amber,
+                        fontSize: 25,
+                        letterSpacing: 1.5
+                      ),
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 20, 0, 0),
-                  child: Text(
-                    "14",
-                    style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.grey
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(space_five, space_one, 0, 0),
+                    child: Text(
+                      "14",
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.grey
+                      ),
                     ),
                   ),
                 ),
@@ -110,7 +128,7 @@ class _HomeState extends State<Home> {
             ),
 
             SizedBox(
-              height: queryData.size.height/30,
+              height: queryData.size.height/25,
             ),
 
             // Image.network("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-1.2."
@@ -132,7 +150,7 @@ class _HomeState extends State<Home> {
               "Your Progress",
               style: TextStyle(
                   color: Colors.amber,
-                  fontSize: 20,
+                  fontSize: 18,
                   letterSpacing: 2
               ),
             ),
@@ -142,7 +160,7 @@ class _HomeState extends State<Home> {
 
 
             Padding(
-              padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+              padding: EdgeInsets.fromLTRB(space_one, 0, space_one, 0),
               child: LinearProgressIndicator(
                   minHeight: 15,
                   value: prozenti/100,
@@ -157,7 +175,7 @@ class _HomeState extends State<Home> {
               style: TextStyle(
                   color: Colors.amber,
                   letterSpacing: 1,
-                  fontSize: 20
+                  fontSize: 18
               ),
             )
           ]
