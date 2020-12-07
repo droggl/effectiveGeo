@@ -7,7 +7,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  double prozenti = 20;
+  double prozenti = 20; 
   int currentIndex = 0;
 
 

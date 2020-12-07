@@ -7,7 +7,8 @@ import 'package:effective_geo/pages/navigation.dart';
 import 'package:effective_geo/pages/flashcard.dart';
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/navigation',
+
+  //initialRoute: '/navigation',
 
 
 
