@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:effective_geo/data/countries_english.dart';
+
+double fontSizeEvaluation = 15;
+dynamic buttonColor = Colors.grey[900];
+double buttonHeight = 65;
 
 class Flashcard extends StatefulWidget {
   @override
@@ -13,47 +18,26 @@ class _FlashcardState extends State<Flashcard> {
     queryData = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: Colors.grey[850],
+      appBar: AppBar(
+        backgroundColor: Colors.grey[900],
+      ),
       body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          SizedBox(
-            width: double.infinity,
-            height: queryData.size.height / 3,
-            child: Container(
-              margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-              decoration: BoxDecoration(
-                  color: Colors.grey[800],
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              child: Center(
-                child: Text(
-                  "Question",
-                  style: TextStyle(
-                      color: Colors.amber,
-                      fontSize: 23,
-                      letterSpacing: 3),
-                ),
-              ),
-            ),
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SizedBox(),
 
-          Visibility(
-            visible: showAnswer,
-            maintainSize: true,
-            maintainAnimation: true,
-            maintainState: true,
-            child:
             SizedBox(
               width: double.infinity,
               height: queryData.size.height / 3,
               child: Container(
-                margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                 decoration: BoxDecoration(
                     color: Colors.grey[800],
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 child: Center(
                   child: Text(
-                    "Answer",
+                    "Question",
                     style: TextStyle(
                         color: Colors.amber,
                         fontSize: 23,
@@ -62,40 +46,165 @@ class _FlashcardState extends State<Flashcard> {
                 ),
               ),
             ),
-          ),
 
-          RaisedButton(
-            padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
-            onPressed: () {
-              showAnswer = true;
-              setState(() {});
-            },
-            color: Colors.grey[900],
-            child: Container(
-              padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
-              decoration: BoxDecoration(
-                  // border: Border.all(
-                  //   color: Colors.amber,
-                  // ),
-                  borderRadius: BorderRadius.all(Radius.circular(5),)
-              ),
-              child: (
-                  Text("Show answer",
-                    style: TextStyle(
-                      color: Colors.amber,
-                      fontSize: 23,
-                      letterSpacing: 3,
-
+            Visibility(
+              visible: showAnswer,
+              maintainSize: true,
+              maintainAnimation: true,
+              maintainState: true,
+              child:
+              SizedBox(
+                width: double.infinity,
+                height: queryData.size.height / 3,
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  decoration: BoxDecoration(
+                      color: Colors.grey[800],
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: Center(
+                    child: Text(
+                      "Answer",
+                      style: TextStyle(
+                          color: Colors.amber,
+                          fontSize: 23,
+                          letterSpacing: 3),
                     ),
-                  )
+                  ),
+                ),
               ),
             ),
-          ),
 
-        ],
+            SizedBox(
+              width: double.infinity,
+              height: buttonHeight,
+              child: !showAnswer ?
+                FlatButton(
+                  shape: RoundedRectangleBorder(
+                    // borderRadius: BorderRadius.circular(5),
+                    side: BorderSide(
+                      color: Colors.black,
+
+                    ),
+                  ),
+                  onPressed: () {
+                    showAnswer = true;
+                    setState(() {});
+                  },
+
+                  color: buttonColor,
+                  child: Text(
+                      "Show answer",
+                      style: TextStyle(
+                        color: Colors.amber,
+                        fontSize: 23,
+                        letterSpacing: 3,
+                      )
+                  ),
+                )
+                  :
+              Row(
+                children: <Widget> [
+                  FlatButton(
+                    height: buttonHeight,
+                    minWidth: queryData.size.width / 4,
+                    color: buttonColor,
+                    shape: RoundedRectangleBorder(
+                      // borderRadius: BorderRadius.circular(5),
+                      side: BorderSide(
+                        color: Colors.black,
+
+                      ),
+                    ),
+                    onPressed: () {
+                      showAnswer = false;
+                      setState(() {});
+                    },
+                    child: Text(
+                      "Again",
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: fontSizeEvaluation,
+                      ),
+                    ),
+                  ),
+
+                  FlatButton(
+                    height: buttonHeight,
+                    minWidth: queryData.size.width / 4,
+                    color: buttonColor,
+                    shape: RoundedRectangleBorder(
+                      // borderRadius: BorderRadius.circular(5),
+                      side: BorderSide(
+                        color: Colors.black,
+
+                      ),
+                    ),
+                    onPressed: () {
+                      showAnswer = false;
+                      setState(() {});
+                    },
+                    child: Text(
+                      "Hard",
+                      style: TextStyle(
+                        color: Colors.amber,
+                        fontSize: fontSizeEvaluation,
+                      ),
+                    ),
+                  ),
+
+                  FlatButton(
+                      height: buttonHeight,
+                      minWidth: queryData.size.width / 4,
+                      color: buttonColor,
+                      shape: RoundedRectangleBorder(
+                        // borderRadius: BorderRadius.circular(5),
+                        side: BorderSide(
+                          color: Colors.black,
+
+                        ),
+                      ),
+                      onPressed: () {
+                        showAnswer = false;
+                        setState(() {});
+                      },
+                      child: Text(
+                        "Good",
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: fontSizeEvaluation,
+                        ),
+                      )
+                  ),
+
+                  FlatButton(
+                    height: buttonHeight,
+                    minWidth: queryData.size.width / 4,
+                    color: buttonColor,
+                    shape: RoundedRectangleBorder(
+                      // borderRadius: BorderRadius.circular(5),
+                      side: BorderSide(
+                        color: Colors.black,
+
+                      ),
+                    ),
+                    onPressed: () {
+                      showAnswer = false;
+                      setState(() {});
+                    },
+                    child: Text(
+                      "Easy",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: fontSizeEvaluation,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
     );
-
   }
 }
