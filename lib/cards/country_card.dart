@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:effective_geo/country.dart';
+
 class CountryCard extends StatelessWidget {
 
   //final Country country;

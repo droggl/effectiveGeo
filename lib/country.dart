@@ -31,7 +31,7 @@ class Country extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Image.asset("flags/"+img + ".png",                       //"assets/welt.jpg"  "flags/"+img + ".png"
+          Image.asset("assets/flags/"+img + ".png",                       //"assets/welt.jpg"  "flags/"+img + ".png"
             width: queryData.size.height/1),
 
           SizedBox(
