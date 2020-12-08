@@ -7,7 +7,10 @@ import 'package:effective_geo/pages/navigation.dart';
 import 'package:effective_geo/pages/flashcard.dart';
 
 void main() => runApp(MaterialApp(
-
+  title: "Effective geo",
+  theme: ThemeData(
+    primaryColor: Colors.grey[900],
+  ),
   //initialRoute: '/navigation',
 
 
