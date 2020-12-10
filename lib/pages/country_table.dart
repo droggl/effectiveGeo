@@ -1,7 +1,7 @@
 import 'package:effective_geo/cards/country_card.dart';
+import 'package:effective_geo/data/countries_english.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:effective_geo/data/countries_english.dart';
 
 class CountryTable extends StatefulWidget {
   @override
@@ -9,21 +9,50 @@ class CountryTable extends StatefulWidget {
 }
 
 class _CountryTableState extends State<CountryTable> {
+
+  TextEditingController _textController = TextEditingController();
+
+  List<dynamic> countriesEnglishCopy = List.from(countriesEnglish);
+
+  onItemChanged(String value) {
+    setState(() {
+      countriesEnglishCopy = countriesEnglish
+          .where((string) => string["name"].toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[900],
+      appBar: AppBar(
+        title:  Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: TextField(
+            controller: _textController,
+            style: TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+              hintText: 'Search here...',
+              hintStyle: TextStyle(color: Colors.grey[700]),
+              prefixIcon: Icon(Icons.search, color: Colors.white,),
+            ),
+            onChanged: onItemChanged,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: ListView.builder(
-              itemCount: countriesEnglish.length,
-              itemBuilder: (context,  index){
-                return CountryCard(country:  countriesEnglish[index]);
-              },
-            ),
+          itemCount: countriesEnglishCopy.length,
+          itemBuilder: (context,  index){
+            return CountryCard(country:  countriesEnglishCopy[index]);
+          },
+        ),
       ),
     );
   }
 }
+
 
 
 
@@ -58,71 +87,5 @@ class _CountryTableState extends State<CountryTable> {
             ),
           )),
     );
-  }
-}*/
-
-
-
-
-
-
-
-/*
-class CountryTable extends StatefulWidget {
-  @override
-  _CountryTableState createState() => _CountryTableState();
-}
-
-class _CountryTableState extends State<CountryTable> {
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<List>(
-      future: CountryProvider.getAllCountries(),
-      builder: (context, AsyncSnapshot<List> snapshot) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text("Countries of the world"),
-            actions: [],
-          ),
-          body: snapshot.hasData
-              ? _buildCountryTable(snapshot.data)
-              : CircularProgressIndicator(),
-        );
-      },
-    );
-  }
-
-  Widget _buildCountryTable(List<Country> countries) {
-    return SingleChildScrollView(
-        child: DataTable(
-          columns: [
-            // DataColumn(label: Text("Flag")),
-            DataColumn(label: Text("Country")),
-            DataColumn(label: Text("Capital")),
-          ],
-          rows: countries
-              .map(
-                (country) => DataRow(cells: [
-              // DataCell(
-              //     Container(
-              //       width: 30,
-              //       child: SvgPicture.network(country.flag,
-              //         width: 20,
-              //         height: 20,
-              //         placeholderBuilder: (BuildContext context) => Container(
-              //             padding: const EdgeInsets.all(30.0),
-              //             child: const CircularProgressIndicator()),),
-              //       // Text(country.flag),
-              //     )
-              // ),
-              DataCell(
-                Text(country.name),
-              ),
-              DataCell(
-                Text(country.capital),
-              )
-            ]),
-          ).toList(),
-        ));
   }
 }*/
