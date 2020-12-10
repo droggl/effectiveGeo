@@ -120,7 +120,8 @@ class _FlashcardState extends State<Flashcard> {
                       setState(() {});
                     },
                     child: Text(
-                      "Again",
+                      "<10min\nAgain",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.red,
                         fontSize: fontSizeEvaluation,
@@ -145,6 +146,7 @@ class _FlashcardState extends State<Flashcard> {
                     },
                     child: Text(
                       "Hard",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.amber,
                         fontSize: fontSizeEvaluation,
@@ -169,6 +171,7 @@ class _FlashcardState extends State<Flashcard> {
                       },
                       child: Text(
                         "Good",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.green,
                           fontSize: fontSizeEvaluation,
@@ -193,6 +196,7 @@ class _FlashcardState extends State<Flashcard> {
                     },
                     child: Text(
                       "Easy",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.blue,
                         fontSize: fontSizeEvaluation,
