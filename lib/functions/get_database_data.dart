@@ -3,6 +3,7 @@ import 'package:effective_geo/database_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'extract_learning_list.dart';
+import 'package:effective_geo/data/learning_list.dart';
 
 void getData(BuildContext context) async{
 
@@ -25,23 +26,26 @@ void getData(BuildContext context) async{
         'capital':instance['capital'],
         'continent':instance['subregion'],
         'population':instance['population'],
-        'time': "0",
-        'reps': '0',
-        'quality': '0',
-        'easeFactor': '0',
-        'interval' : '0',
-        'active': '0',                    //wenn aktive = 1 wird karte gelernt
+        'time': 0,
+        'reps': 0,
+        'quality': 0,
+        'easeFactor': 2.5,
+        'interval' : 0.0,
+        'active': 0,                    //wenn aktive = 1 wird karte gelernt
         'id': i                          //datenbANK update funktion braucht index
       },);
 
       print(n);
     }  //for schleife ende
     countries = await DatabaseHelper.instance.queryAll();
+    print(countries[0]);
     print(countries.length);
     print("database initialized!");
 
   }
  // learningList = await extractLearningList(countries);
+    learningList = List.from(countries);
+    // learningList.removeRange(10, learningList.length);
 
 //  for(int i = 0; i<countries.length; i++){
   //  print(countries.elementAt(i)["id"]);

@@ -8,7 +8,7 @@ Future<List<Map>> activateNewElements(List<Map> list, int n) async{  //n entspri
     int random = Random().nextInt(list.length);
     int updateId = await DatabaseHelper.instance.update({
       '_id': list.elementAt(random)['id'],
-      'active': '1'
+      'active': 1,
     });
     print(updateId);
     erg.add(list.removeAt(random));
