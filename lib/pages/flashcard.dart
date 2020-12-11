@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:effective_geo/data/countries_english.dart';
+import 'package:effective_geo/data/learning_list.dart';
+import 'package:effective_geo/database_helper.dart';
+import 'package:sm2/main.dart';
+import 'package:effective_geo/functions/get_database_data.dart';
 
 double fontSizeEvaluation = 15;
 dynamic buttonColor = Colors.grey[900];
@@ -12,6 +16,48 @@ class Flashcard extends StatefulWidget {
 
 class _FlashcardState extends State<Flashcard> {
   bool showAnswer = false;
+  bool done = learningList.length == 0;
+  final sm = Sm();
+
+  void rateCard(int quality) async {
+
+    print("before update:");
+    print(countriesEnglish[0]);
+
+    print(learningList[0]['interval']);
+    int reps =learningList[0]['reps'];
+    double previousInterval = 2.3; //learningList[0]['interval'];
+    double easeFactor = 1.2; // learningList[0]['easeFactor'];
+
+    SmResponse smResponse = sm.calc(
+        quality: quality,
+        repetitions: reps,
+        previousInterval: previousInterval,
+        previousEaseFactor: easeFactor,
+    );
+    print(smResponse.interval);
+    await DatabaseHelper.instance.update({
+      '_id': learningList[0]['id'],
+      'reps': smResponse.repetitions,
+      'quality': quality,
+      'easeFactor': smResponse.easeFactor,
+      'interval' : smResponse.interval,
+    });
+
+    showAnswer = false;
+    learningList.removeAt(0);
+    if(learningList.length==0){
+      done = true;
+    }
+
+    setState(() {});
+    print("after update:");
+    print(countriesEnglish[0]);
+    // getData(context);
+    // List<Map> testList = await DatabaseHelper.instance.queryAll();
+    // print(testList[0]);
+  }
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
@@ -22,7 +68,12 @@ class _FlashcardState extends State<Flashcard> {
         backgroundColor: Colors.grey[900],
       ),
       body: Center(
-        child: Column(
+        child: done? Text(
+          "Done for today",
+          style: TextStyle(
+            color: Colors.amber
+          ),
+        ) : Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             SizedBox(),
@@ -37,7 +88,7 @@ class _FlashcardState extends State<Flashcard> {
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 child: Center(
                   child: Text(
-                    "Question",
+                    learningList[0]["name"],
                     style: TextStyle(
                         color: Colors.amber,
                         fontSize: 23,
@@ -63,7 +114,7 @@ class _FlashcardState extends State<Flashcard> {
                       borderRadius: BorderRadius.all(Radius.circular(5))),
                   child: Center(
                     child: Text(
-                      "Answer",
+                      learningList[0]["capital"],
                       style: TextStyle(
                           color: Colors.amber,
                           fontSize: 23,
@@ -116,8 +167,7 @@ class _FlashcardState extends State<Flashcard> {
                       ),
                     ),
                     onPressed: () {
-                      showAnswer = false;
-                      setState(() {});
+                      rateCard(0);
                     },
                     child: Text(
                       "<10min\nAgain",
@@ -141,8 +191,7 @@ class _FlashcardState extends State<Flashcard> {
                       ),
                     ),
                     onPressed: () {
-                      showAnswer = false;
-                      setState(() {});
+                      rateCard(3);
                     },
                     child: Text(
                       "Hard",
@@ -166,8 +215,7 @@ class _FlashcardState extends State<Flashcard> {
                         ),
                       ),
                       onPressed: () {
-                        showAnswer = false;
-                        setState(() {});
+                        rateCard(4);
                       },
                       child: Text(
                         "Good",
@@ -191,8 +239,7 @@ class _FlashcardState extends State<Flashcard> {
                       ),
                     ),
                     onPressed: () {
-                      showAnswer = false;
-                      setState(() {});
+                      rateCard(5);
                     },
                     child: Text(
                       "Easy",
