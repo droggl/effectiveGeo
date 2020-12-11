@@ -15,6 +15,13 @@ class DatabaseHelper {
   static final _columnCapital = 'capital';
   static final _columnContinent = 'continent';
   static final _columnPopulation = 'population';
+  static final _columnTime = 'time';
+  static final _columnQuality = 'quality';
+  static final _columnReps = 'reps';
+  static final _columnInterval = 'interval';
+  static final _columnEaseFactor = 'easeFactor';
+  static final _columnActive = "active";
+  static final _columnIdMarker = "id";
 
   static Database _database;
 
@@ -55,7 +62,14 @@ class DatabaseHelper {
     $_columnCode TEXT NOT NULL,
     $_columnCapital TEXT NOT NULL,
     $_columnContinent TEXT NOT NULL,
-    $_columnPopulation TEXT NOT NULL)   
+    $_columnPopulation TEXT NOT NULL,
+    $_columnTime TEXT NOT NULL,
+    $_columnQuality TEXT NOT NULL,
+    $_columnReps TEXT NOT NULL,
+    $_columnInterval INTEGER ,
+    $_columnEaseFactor TEXT NOT NULL,
+    $_columnActive TEXT NOT NULL,
+    $_columnIdMarker INTEGER   )   
     ''');
   }
 

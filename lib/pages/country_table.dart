@@ -1,3 +1,36 @@
+/*import 'package:effective_geo/cards/country_card.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:effective_geo/data/countries_english.dart';
+
+class CountryTable extends StatefulWidget {
+  @override
+  _CountryTableState createState() => _CountryTableState();
+}
+
+class _CountryTableState extends State<CountryTable> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[900],
+      body: SafeArea(
+        child: ListView.builder(
+          itemCount: countriesEnglish.length,
+          itemBuilder: (context,  index){
+            return CountryCard(country:  countriesEnglish[index]);
+          },
+        ),
+      ),
+    );
+  }
+}
+
+*/
+
+
+
+
+
 import 'package:effective_geo/cards/country_card.dart';
 import 'package:effective_geo/data/countries_english.dart';
 import 'package:flutter/cupertino.dart';
@@ -54,38 +87,3 @@ class _CountryTableState extends State<CountryTable> {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-class _CountryTableState extends State<CountryTable> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[900],
-      body: SingleChildScrollView(
-          child: SafeArea(
-            child: Column(
-              children: countriesEnglish.map((country) => CountryCard(country: country)).toList(),
-            ),
-          )),
-    );
-  }
-}*/
