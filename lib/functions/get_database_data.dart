@@ -30,7 +30,7 @@ void getData(BuildContext context) async{
         'reps': 0,
         'quality': 0,
         'easeFactor': 2.5,
-        'interval' : 0.0,
+        'interval' : 0,
         'active': 0,                    //wenn aktive = 1 wird karte gelernt
         'id': i                          //datenbANK update funktion braucht index
       },);

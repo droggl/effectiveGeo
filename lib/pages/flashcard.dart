@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:effective_geo/data/countries_english.dart';
 import 'package:effective_geo/data/learning_list.dart';
 import 'package:effective_geo/database_helper.dart';
-import 'package:sm2/main.dart';
-import 'package:effective_geo/functions/get_database_data.dart';
+import 'package:effective_geo/functions/sm_algorithm/sm.dart';
+
 
 double fontSizeEvaluation = 15;
 dynamic buttonColor = Colors.grey[900];
@@ -24,10 +24,12 @@ class _FlashcardState extends State<Flashcard> {
     print("before update:");
     print(countriesEnglish[0]);
 
-    print(learningList[0]['interval']);
+
+    print("interval:");
+    print(learningList[0]['interval'] is int);
     int reps =learningList[0]['reps'];
-    double previousInterval = 2.3; //learningList[0]['interval'];
-    double easeFactor = 1.2; // learningList[0]['easeFactor'];
+    int previousInterval = learningList[0]['interval'];
+    double easeFactor = learningList[0]['easeFactor'];
 
     SmResponse smResponse = sm.calc(
         quality: quality,
@@ -35,17 +37,22 @@ class _FlashcardState extends State<Flashcard> {
         previousInterval: previousInterval,
         previousEaseFactor: easeFactor,
     );
+
+    print(smResponse.repetitions);
     print(smResponse.interval);
+    print(smResponse.easeFactor);
     await DatabaseHelper.instance.update({
       '_id': learningList[0]['id'],
       'reps': smResponse.repetitions,
       'quality': quality,
       'easeFactor': smResponse.easeFactor,
       'interval' : smResponse.interval,
+      'active': 1,
     });
 
+
     showAnswer = false;
-    learningList.removeAt(0);
+    // learningList.removeAt(0);
     if(learningList.length==0){
       done = true;
     }

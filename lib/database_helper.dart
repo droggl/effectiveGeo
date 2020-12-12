@@ -66,7 +66,7 @@ class DatabaseHelper {
     $_columnTime INTEGER NOT NULL,
     $_columnQuality INTEGER NOT NULL,
     $_columnReps INTEGER NOT NULL,
-    $_columnInterval REAL NOT NULL ,
+    $_columnInterval INTEGER NOT NULL ,
     $_columnEaseFactor REAL NOT NULL,
     $_columnActive INTEGER NOT NULL,
     $_columnIdMarker INTEGER   )   
