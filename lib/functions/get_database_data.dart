@@ -36,6 +36,22 @@ void getData(BuildContext context) async{
 
       print(n);
     }  //for schleife ende
+
+    int n = await DatabaseHelper.instance.insert({  //Element 251 dient als Referenz und gibt in 'time' an,
+      'name':"",                                    //wann das letzte mal gelernt wurde.
+      'code':"",                                    //zeit muss nach lernen der flahcard gesetzt werden.
+      'capital':"",
+      'continent':"",
+      'population':"",
+      'time': 0,
+      'reps': 0,
+      'quality': 0,
+      'easeFactor': 0,
+      'interval' : 0,
+      'active': 0,
+      'id': 0
+    },);
+
     countries = await DatabaseHelper.instance.queryAll();
     print(countries.length);
     print("database initialized!");

@@ -27,6 +27,7 @@ Future<List<Map>> extractLearningList(List<Map>list) async{
       erg.add(getNewElements.elementAt(i));
     }
   }
+
   return erg;
 }
 
