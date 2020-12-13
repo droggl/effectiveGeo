@@ -63,12 +63,12 @@ class DatabaseHelper {
     $_columnCapital TEXT NOT NULL,
     $_columnContinent TEXT NOT NULL,
     $_columnPopulation TEXT NOT NULL,
-    $_columnTime TEXT NOT NULL,
-    $_columnQuality TEXT NOT NULL,
-    $_columnReps TEXT NOT NULL,
+    $_columnTime INTEGER,
+    $_columnQuality INTEGER,
+    $_columnReps INTEGER,
     $_columnInterval INTEGER ,
-    $_columnEaseFactor TEXT NOT NULL,
-    $_columnActive TEXT NOT NULL,
+    $_columnEaseFactor INTEGER,
+    $_columnActive INTEGER,
     $_columnIdMarker INTEGER   )   
     ''');
   }

@@ -27,10 +27,6 @@ class _CountryTableState extends State<CountryTable> {
 
 */
 
-
-
-
-
 import 'package:effective_geo/cards/country_card.dart';
 import 'package:effective_geo/data/countries_english.dart';
 import 'package:flutter/cupertino.dart';

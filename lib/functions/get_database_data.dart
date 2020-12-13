@@ -25,12 +25,12 @@ void getData(BuildContext context) async{
         'capital':instance['capital'],
         'continent':instance['subregion'],
         'population':instance['population'],
-        'time': "0",
-        'reps': '0',
-        'quality': '0',
-        'easeFactor': '0',
-        'interval' : '0',
-        'active': '0',                    //wenn aktive = 1 wird karte gelernt
+        'time': 0,
+        'reps': 0,
+        'quality': 0,
+        'easeFactor': 0,
+        'interval' : 0,
+        'active': 0,                    //wenn aktive = 1 wird karte gelernt
         'id': i                          //datenbANK update funktion braucht index
       },);
 
