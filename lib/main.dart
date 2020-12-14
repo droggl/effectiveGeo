@@ -23,6 +23,7 @@ class EffectiveGeo extends StatelessWidget {
           title: "Effective geo",
           theme: ThemeData(
             primaryColor: Colors.grey[900],
+            brightness: Brightness.dark,
           ),
           //initialRoute: '/navigation',
 
