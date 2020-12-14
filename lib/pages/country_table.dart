@@ -1,32 +1,3 @@
-/*import 'package:effective_geo/cards/country_card.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:effective_geo/data/countries_english.dart';
-
-class CountryTable extends StatefulWidget {
-  @override
-  _CountryTableState createState() => _CountryTableState();
-}
-
-class _CountryTableState extends State<CountryTable> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[900],
-      body: SafeArea(
-        child: ListView.builder(
-          itemCount: countriesEnglish.length,
-          itemBuilder: (context,  index){
-            return CountryCard(country:  countriesEnglish[index]);
-          },
-        ),
-      ),
-    );
-  }
-}
-
-*/
-
 import 'package:effective_geo/cards/country_card.dart';
 import 'package:effective_geo/data/countries_english.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,11 +12,12 @@ class _CountryTableState extends State<CountryTable> {
 
   TextEditingController _textController = TextEditingController();
 
-  List<dynamic> countriesEnglishCopy = List.from(countriesEnglish);
+  // List<dynamic> countriesEnglishCopy = List.from(countriesEnglish);
+  // filteredCountriesEnglish = List.from(countriesEnglish);
 
   onItemChanged(String value) {
     setState(() {
-      countriesEnglishCopy = countriesEnglish
+      filteredCountriesEnglish = countriesEnglish
           .where((string) => string["name"].toLowerCase().contains(value.toLowerCase()))
           .toList();
     });
@@ -53,6 +25,7 @@ class _CountryTableState extends State<CountryTable> {
 
   @override
   Widget build(BuildContext context) {
+    filteredCountriesEnglish = List.from(countriesEnglish);
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
@@ -72,9 +45,9 @@ class _CountryTableState extends State<CountryTable> {
       ),
       body: SafeArea(
         child: ListView.builder(
-          itemCount: countriesEnglishCopy.length,
-          itemBuilder: (context,  index){
-            return CountryCard(country:  countriesEnglishCopy[index]);
+          itemCount: filteredCountriesEnglish.length,
+          itemBuilder: (context, index){
+            return CountryCard(index: index);
           },
         ),
       ),
