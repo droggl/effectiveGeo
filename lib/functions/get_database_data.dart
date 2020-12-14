@@ -59,9 +59,10 @@ void getData(BuildContext context) async{
   }
  // learningList = await extractLearningList(countries);
 
-//  for(int i = 0; i<countries.length; i++){
-  //  print(countries.elementAt(i)["id"]);
-  //}
+  for(int i = 0; i<countries.length; i++){
+    print(countries.elementAt(i)["id"]);
+  }
   countriesEnglish = countries;
+  //var test = countries.removeAt(249);
   Navigator.pushReplacementNamed(context, '/navigation');
 }
