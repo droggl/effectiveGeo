@@ -59,9 +59,9 @@ void getData(BuildContext context) async{
     print("database initialized!");
 
   }
- // learningList = await extractLearningList(countries);
-    learningList = List.from(countries);
-    // learningList.removeRange(10, learningList.length);
+  // learningList = await extractLearningList(countries);
+  // learningList = List.from(countries);
+  learningList.removeRange(10, learningList.length); // nur zum testen
 
   for(int i = 0; i<countries.length; i++){
     print(countries.elementAt(i)["id"]);

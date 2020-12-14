@@ -26,6 +26,7 @@ class _CountryState extends State<Country> {
       img = a + b;
     }
 
+    // TODO swipe funktionalität verbessern + animation evtl
     // int sensivity = 10;
     return GestureDetector(
       onPanUpdate: (details) {
@@ -44,8 +45,6 @@ class _CountryState extends State<Country> {
           }
         }
       },
-
-
       // onHorizontalDragUpdate: (details) {
       //   // Note: Sensitivity is integer used when you don't want to mess up vertical drag
       //   if (details.delta.dx > sensivity) {
@@ -63,6 +62,7 @@ class _CountryState extends State<Country> {
       //     }
       //   }
       // },
+
 
       child: Scaffold(
         backgroundColor: Colors.grey[850],

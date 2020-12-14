@@ -24,9 +24,6 @@ class _FlashcardState extends State<Flashcard> {
     print("before update:");
     print(countriesEnglish[0]);
 
-
-    print("interval:");
-    print(learningList[0]['interval'] is int);
     int reps =learningList[0]['reps'];
     int previousInterval = learningList[0]['interval'];
     double easeFactor = learningList[0]['easeFactor'];
@@ -52,7 +49,7 @@ class _FlashcardState extends State<Flashcard> {
 
 
     showAnswer = false;
-    // learningList.removeAt(0);
+    learningList.removeAt(0);
     if(learningList.length==0){
       done = true;
     }
