@@ -69,7 +69,7 @@ class DatabaseHelper {
     $_columnInterval INTEGER ,
     $_columnEaseFactor REAL,
     $_columnActive INTEGER,
-    $_columnIdMarker INTEGER, )   
+    $_columnIdMarker INTEGER)   
     ''');
   }
 

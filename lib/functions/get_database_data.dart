@@ -47,7 +47,7 @@ void getData(BuildContext context) async{
       'time': 0,
       'reps': 0,
       'quality': 0,
-      'easeFactor': 0,
+      'easeFactor': 2.5,
       'interval' : 0,
       'active': 0,
       'id': 0
@@ -60,12 +60,12 @@ void getData(BuildContext context) async{
 
   }
   // learningList = await extractLearningList(countries);
-  // learningList = List.from(countries);
-  learningList.removeRange(10, learningList.length); // nur zum testen
+  learningList = List.from(countries);
+  // learningList.removeRange(10, learningList.length);
 
-  for(int i = 0; i<countries.length; i++){
-    print(countries.elementAt(i)["id"]);
-  }
+  // for(int i = 0; i<countries.length; i++){
+  //   print(countries.elementAt(i)["id"]);
+  // }
   countriesEnglish = countries;
 
   filteredCountriesEnglish = List.from(countriesEnglish);
