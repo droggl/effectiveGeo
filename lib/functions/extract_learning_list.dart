@@ -20,13 +20,14 @@ Future<List<Map>> extractLearningList(List<Map>list) async{
 
 
 
-  if(false  && false) {   //wenn zeit für neue vokabeln zu lernen (24 Stunden nach letzter Nutzung der App) und
+  if(false) {   //wenn zeit für neue vokabeln zu lernen (24 Stunden nach letzter Nutzung der App) und
     int n = 0;            //puffer nicht zu voll!  (ca. 30???)
     List getNewElements = await activateNewElements(completeList, n);
     for (int i = 0; i < n; i++) {
       erg.add(getNewElements.elementAt(i));
     }
   }
+
   return erg;
 }
 

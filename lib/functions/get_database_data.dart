@@ -37,6 +37,22 @@ void getData(BuildContext context) async{
 
       print(n);
     }  //for schleife ende
+
+    int n = await DatabaseHelper.instance.insert({  //Element 251 dient als Referenz und gibt in 'time' an,
+      'name':"",                                    //wann das letzte mal gelernt wurde.
+      'code':"",                                    //zeit muss nach lernen der flahcard gesetzt werden.
+      'capital':"",
+      'continent':"",
+      'population':"",
+      'time': 0,
+      'reps': 0,
+      'quality': 0,
+      'easeFactor': 0,
+      'interval' : 0,
+      'active': 0,
+      'id': 0
+    },);
+
     countries = await DatabaseHelper.instance.queryAll();
     print(countries[0]);
     print(countries.length);
@@ -47,9 +63,12 @@ void getData(BuildContext context) async{
     learningList = List.from(countries);
     // learningList.removeRange(10, learningList.length);
 
-//  for(int i = 0; i<countries.length; i++){
-  //  print(countries.elementAt(i)["id"]);
-  //}
+  for(int i = 0; i<countries.length; i++){
+    print(countries.elementAt(i)["id"]);
+  }
   countriesEnglish = countries;
+
+  filteredCountriesEnglish = List.from(countriesEnglish);
+
   Navigator.pushReplacementNamed(context, '/navigation');
 }
