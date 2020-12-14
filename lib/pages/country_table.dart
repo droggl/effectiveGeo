@@ -25,7 +25,7 @@ class _CountryTableState extends State<CountryTable> {
 
   @override
   Widget build(BuildContext context) {
-    filteredCountriesEnglish = List.from(countriesEnglish);
+
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
@@ -38,6 +38,23 @@ class _CountryTableState extends State<CountryTable> {
               hintText: 'Search here...',
               hintStyle: TextStyle(color: Colors.grey[700]),
               prefixIcon: Icon(Icons.search, color: Colors.white,),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  Icons.clear,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  _textController.clear();
+                  onItemChanged("");
+                  FocusScopeNode currentFocus = FocusScope.of(context);
+                  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+                    FocusManager.instance.primaryFocus.unfocus();
+                  }
+                },
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.amber),
+              ),
             ),
             onChanged: onItemChanged,
           ),

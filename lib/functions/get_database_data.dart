@@ -2,7 +2,7 @@ import 'package:effective_geo/data/countries_english.dart';
 import 'package:effective_geo/database_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'extract_learning_list.dart';
+// import 'extract_learning_list.dart';
 
 void getData(BuildContext context) async{
 
@@ -47,5 +47,6 @@ void getData(BuildContext context) async{
   //  print(countries.elementAt(i)["id"]);
   //}
   countriesEnglish = countries;
+  filteredCountriesEnglish = List.from(countriesEnglish);
   Navigator.pushReplacementNamed(context, '/navigation');
 }
