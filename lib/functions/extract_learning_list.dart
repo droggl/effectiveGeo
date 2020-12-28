@@ -41,7 +41,6 @@ Future<List<Map>> extractLearningList(List<Map>list) async{
     '_id':  251,
     'time': currentTimeInMinutes()+1440,
   });
-  print("hakko");
 
 
 ////////////////////////////////////////////////////////////////

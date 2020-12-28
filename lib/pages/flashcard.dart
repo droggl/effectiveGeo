@@ -18,12 +18,12 @@ class Flashcard extends StatefulWidget {
 class _FlashcardState extends State<Flashcard> {
   bool showAnswer = false;
   bool done = learningList.length == 0;
-  final sm = Sm();
+   final Sm sm = Sm();
 
   void rateCard(int quality) async {
 
     print("before update:");
-    print(countriesEnglish[0]);
+    print(learningList[0]);
 
     int reps =learningList[0]['reps'];
     int previousInterval = learningList[0]['interval'];
@@ -39,14 +39,16 @@ class _FlashcardState extends State<Flashcard> {
     print(smResponse.repetitions);
     print(smResponse.interval);
     print(smResponse.easeFactor);
-    await DatabaseHelper.instance.update({
+    int test = await DatabaseHelper.instance.update({
       '_id': learningList[0]['id'],
-      'reps': smResponse.repetitions,
-      'quality': quality,
+      'reps':  smResponse.repetitions,
+      'quality':  quality,
       'easeFactor': smResponse.easeFactor,
-      'interval' : (smResponse.interval * 14440)+currentTimeInMinutes(),
-      'active': 1,
+      'interval' : (smResponse.interval * 14440)+currentTimeInMinutes(), //Zeit bis zur naechsten abfrage
+      //'active': 1,
     });
+    print(test);
+    print(learningList[0]['id']);
 
 
     showAnswer = false;
@@ -56,8 +58,6 @@ class _FlashcardState extends State<Flashcard> {
     }
 
     setState(() {});
-    print("after update:");
-    print(countriesEnglish[0]);
     // getData(context);
     // List<Map> testList = await DatabaseHelper.instance.queryAll();
     // print(testList[0]);

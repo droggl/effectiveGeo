@@ -38,7 +38,7 @@ void getData(BuildContext context) async{
         'easeFactor': 2.5,
         'interval' : 0,
         'active': 0,                    //wenn aktive = 1 wird karte gelernt
-        'id': i                          //datenbANK update funktion braucht index
+        'id': i +1                          //datenbANK update funktion braucht index
       },);
 
     }  //for schleife ende
@@ -55,7 +55,7 @@ void getData(BuildContext context) async{
        'easeFactor': 0,
        'interval' : 0,
        'active': 0,
-       'id': 0
+       'id': 251
      },);
 
     countries = await DatabaseHelper.instance.queryAll();
