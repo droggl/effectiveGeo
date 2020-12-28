@@ -1,3 +1,4 @@
+import 'package:effective_geo/functions/extract_learning_list.dart';
 import 'package:flutter/material.dart';
 import 'package:effective_geo/data/countries_english.dart';
 import 'package:effective_geo/data/learning_list.dart';
@@ -43,7 +44,7 @@ class _FlashcardState extends State<Flashcard> {
       'reps': smResponse.repetitions,
       'quality': quality,
       'easeFactor': smResponse.easeFactor,
-      'interval' : smResponse.interval,
+      'interval' : (smResponse.interval * 14440)+currentTimeInMinutes(),
       'active': 1,
     });
 

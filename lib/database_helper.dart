@@ -20,8 +20,8 @@ class DatabaseHelper {
   static final _columnReps = 'reps';
   static final _columnInterval = 'interval';
   static final _columnEaseFactor = 'easeFactor';
-  static final _columnActive = "active";
-  static final _columnIdMarker = "id";
+  static final _columnActive = 'active';
+  static final _columnIdMarker = 'id';
 
   static Database _database;
 
@@ -83,10 +83,10 @@ class DatabaseHelper {
     return await db.query(_tableName);
   }
 
-  Future update(Map<String, dynamic> row) async {
+  Future<int> update(Map<String, dynamic> row) async {
     Database db = await instance.database;
     int id = row[_columnId];
-    db.update(_tableName, row, where: '$_columnId = ?', whereArgs: [id]);
+    return db.update(_tableName, row, where: '$_columnId = ?', whereArgs: [id]);
   }
 
   Future <int> delete(int id) async {

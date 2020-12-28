@@ -1,33 +1,50 @@
+import '../database_helper.dart';
 import 'activate_new_elements.dart';
 
 Future<List<Map>> extractLearningList(List<Map>list) async{
-  List<Map> completeList = list;
+  List<Map> completeList = List.of(list);
+  List<Map> removeList = List.of(list);
   List<Map>erg = [];
 
-  for(int i= 0; i<list.length; i++ ){
-    int active = int.parse(list.elementAt(i)['active']);
+  int j = 0;
+  for(int i= 0; i<list.length-1; i++ ){
+    int active = list.elementAt(j)['active'];
     if(active==1){   //Vokabel schon im Lernzyklus?
-      int interval = list.elementAt(i)['interval'];
+      int interval = list.elementAt(j)['interval'];
       if(interval<=currentTimeInMinutes()){ //Muss Vokabel schon wieder gelernt werden?
-        Map val = completeList.removeAt(i);
+        Map val = removeList.removeAt(j);
         erg.add(val);
-      }else{
-        var a = completeList.removeAt(i);  //alle Vokabeln die sich bereits im Lernzyklus befinden werden aus
+      }else {
+        var a = removeList.removeAt(j); //alle Vokabeln die sich bereits im Lernzyklus befinden werden aus
         // temporärer Liste entfern, damit sie bei der Auswahl der neuen Vokabeln
-      }                                    //keine Rolle spielen
+        //keine Rolle spielen
+      }
+      j-=1;   //durch remove muss Liste immer angepasst werden
     }
+    j+=1;
   }
 
 
 
-  if(false) {   //wenn zeit für neue vokabeln zu lernen (24 Stunden nach letzter Nutzung der App) und
-    int n = 0;            //puffer nicht zu voll!  (ca. 30???)
-    List getNewElements = await activateNewElements(completeList, n);
+  if(list.elementAt(250)["time"] < currentTimeInMinutes()) {   //wenn zeit für neue vokabeln zu lernen (24 Stunden nach letzter Nutzung der App) und
+    print(list.elementAt(250)["time"]);
+    int n = 10;            //puffer nicht zu voll!  (ca. 30???)
+    List getNewElements = await activateNewElements(removeList, n);
     for (int i = 0; i < n; i++) {
       erg.add(getNewElements.elementAt(i));
     }
   }
 
+
+  //////////////////////////////////////////////////////////////////
+  int updateId = await DatabaseHelper.instance.update({
+    '_id':  251,
+    'time': currentTimeInMinutes()+1440,
+  });
+  print("hakko");
+
+
+////////////////////////////////////////////////////////////////
   return erg;
 }
 

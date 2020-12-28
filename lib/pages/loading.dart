@@ -1,3 +1,4 @@
+import 'package:effective_geo/data/countries_english.dart';
 import 'package:effective_geo/functions/get_database_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -14,7 +15,6 @@ class _LoadingState extends State<Loading> {
 void initState() {
     super.initState();
     getData(context);
-
   }
 
 
