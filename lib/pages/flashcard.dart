@@ -46,7 +46,7 @@ class _FlashcardState extends State<Flashcard> {
       'reps':  smResponse.repetitions,
       'quality':  quality,
       'easeFactor': smResponse.easeFactor,
-      'interval' : currentTimeInMinutes()+2//(smResponse.interval * 14440)+currentTimeInMinutes(), //Zeit bis zur naechsten abfrage
+      'interval' : (smResponse.interval * 14440)+currentTimeInMinutes(), //Zeit bis zur naechsten abfrage
     });
 
     showAnswer = false;
@@ -55,6 +55,7 @@ class _FlashcardState extends State<Flashcard> {
       done = true;
     }
     learnList = List.of(tempList);
+    vocCount = learnList.length;
     setState(() {});
     // getData(context);
     // List<Map> testList = await DatabaseHelper.instance.queryAll();

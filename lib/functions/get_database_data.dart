@@ -12,6 +12,7 @@ void getData(BuildContext context) async{
 
   if (countries.length > 0){  // wenn nich leer
 
+    print("Fehler hier");
     countriesEnglish = List.from(countries);
     print(countriesEnglish.removeAt(250));
 
@@ -76,6 +77,7 @@ void getData(BuildContext context) async{
 
 
   learnList = await extractLearningList(countries);
+  vocCount = learnList.length;
 
   Navigator.pushReplacementNamed(context, '/navigation');
 }

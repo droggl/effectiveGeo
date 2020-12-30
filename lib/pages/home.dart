@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:effective_geo/data/learning_list.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   double prozenti = 20; 
-  int currentIndex = 0;
+  int currentIndex = vocCount;
 
 
   @override
@@ -115,7 +116,7 @@ class _HomeState extends State<Home> {
                   child: Container(
                     margin: EdgeInsets.fromLTRB(space_five, space_one, 0, 0),
                     child: Text(
-                      "14",
+                      currentIndex.toString(),
                       style: TextStyle(
                           fontSize: 25,
                           color: Colors.grey
