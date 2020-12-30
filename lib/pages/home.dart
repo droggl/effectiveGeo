@@ -100,6 +100,7 @@ class _HomeState extends State<Home> {
                     color: Colors.grey[900],
                     onPressed: () {
                       Navigator.pushNamed(context, "/flashcard");
+                      setState(() {});
                     },
                     child: Text(
                       "Start Learning",

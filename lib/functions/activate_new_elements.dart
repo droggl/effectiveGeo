@@ -16,7 +16,6 @@ Future<List<Map>> activateNewElements(List<Map> list, int n) async{  //n entspri
       '_id': testList.elementAt(random)['id'],
       'active': 1,
     });
-    print("Element altiviert");
     erg.add(testList.elementAt(random));
     usedElements.add(random);
   }

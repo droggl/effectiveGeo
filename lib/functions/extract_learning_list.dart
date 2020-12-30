@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import '../database_helper.dart';
 import 'activate_new_elements.dart';
 
@@ -10,28 +8,20 @@ Future<List<Map>> extractLearningList(List<Map>list) async{
 
   int idx = 0;
   for(int i= 0; i<list.length-1; i++ ){
-    print("interval");
-    print( removeList.elementAt(idx)['interval']);
-    print(currentTimeInMinutes());
     if(removeList.elementAt(idx)['active']==1){   //Vokabel schon im Lernzyklus?
        int interval = removeList.elementAt(idx)['interval'];
       if(interval<currentTimeInMinutes()){ //Muss Vokabel schon wieder gelernt werden?
-        print("HHHAAAAAAAALLLLLLOOO");
         Map val = removeList.removeAt(idx);
-
         erg.add(val);
       }else {
         var a = removeList.removeAt(idx); //alle Vokabeln die sich bereits im Lernzyklus befinden werden aus
-        // temporärer Liste entfern, damit sie bei der Auswahl der neuen Vokabeln
-        //keine Rolle spielen
+                                          // temporärer Liste entfern, damit sie bei der Auswahl der neuen Vokabeln
+                                          //keine Rolle spielen
       }
       idx-=1;   //durch remove muss Liste immer angepasst werden
     }
     idx+=1;
   }
-
-
-
 
   if(list.elementAt(250)["time"] < currentTimeInMinutes()) {   //wenn zeit für neue vokabeln zu lernen (24 Stunden nach letzter Nutzung der App) und
     int n = 10;
@@ -43,15 +33,11 @@ Future<List<Map>> extractLearningList(List<Map>list) async{
   }
 
 
-  //////////////////////////////////////////////////////////////////
   int updateId = await DatabaseHelper.instance.update({
     '_id':  251,
     'time': currentTimeInMinutes()+1440,
   });
 
-
-////////////////////////////////////////////////////////////////
- // print(erg.length);
   return erg;
 }
 

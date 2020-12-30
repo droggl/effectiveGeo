@@ -11,10 +11,8 @@ void getData(BuildContext context) async{
   List<Map<String, dynamic>> countries = await DatabaseHelper.instance.queryAll();
 
   if (countries.length > 0){  // wenn nich leer
-
-    print("Fehler hier");
     countriesEnglish = List.from(countries);
-    print(countriesEnglish.removeAt(250));
+    countriesEnglish.removeAt(250);
 
     filteredCountriesEnglish = List.from(countries);
     filteredCountriesEnglish.removeAt(250);
@@ -69,12 +67,7 @@ void getData(BuildContext context) async{
     filteredCountriesEnglish = List.from(countries);
     filteredCountriesEnglish.removeAt(250);
 
-
-
   }
-
-
-
 
   learnList = await extractLearningList(countries);
   vocCount = learnList.length;

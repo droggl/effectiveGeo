@@ -18,7 +18,7 @@ class Flashcard extends StatefulWidget {
 class _FlashcardState extends State<Flashcard> {
   bool showAnswer = false;
   bool done = learnList.length == 0;
-   final Sm sm = Sm();
+  final Sm sm = Sm();
 
 
 
@@ -32,10 +32,10 @@ class _FlashcardState extends State<Flashcard> {
     double easeFactor = tempList[0]['easeFactor'];
 
     SmResponse smResponse = sm.calc(
-        quality: quality,
-        repetitions: reps,
-        previousInterval: previousInterval,
-        previousEaseFactor: easeFactor,
+      quality: quality,
+      repetitions: reps,
+      previousInterval: previousInterval,
+      previousEaseFactor: easeFactor,
     );
 
     //print(smResponse.repetitions);
@@ -78,7 +78,7 @@ class _FlashcardState extends State<Flashcard> {
         child: done? Text(
           "Done for today",
           style: TextStyle(
-            color: Colors.amber
+              color: Colors.amber
           ),
         ) : Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -136,29 +136,29 @@ class _FlashcardState extends State<Flashcard> {
               width: double.infinity,
               height: buttonHeight,
               child: !showAnswer ?
-                FlatButton(
-                  shape: RoundedRectangleBorder(
-                    // borderRadius: BorderRadius.circular(5),
-                    side: BorderSide(
-                      color: Colors.black,
+              FlatButton(
+                shape: RoundedRectangleBorder(
+                  // borderRadius: BorderRadius.circular(5),
+                  side: BorderSide(
+                    color: Colors.black,
 
-                    ),
                   ),
-                  onPressed: () {
-                    showAnswer = true;
-                    setState(() {});
-                  },
+                ),
+                onPressed: () {
+                  showAnswer = true;
+                  setState(() {});
+                },
 
-                  color: buttonColor,
-                  child: Text(
-                      "Show answer",
-                      style: TextStyle(
-                        color: Colors.amber,
-                        fontSize: 23,
-                        letterSpacing: 3,
-                      )
-                  ),
-                )
+                color: buttonColor,
+                child: Text(
+                    "Show answer",
+                    style: TextStyle(
+                      color: Colors.amber,
+                      fontSize: 23,
+                      letterSpacing: 3,
+                    )
+                ),
+              )
                   :
               Row(
                 children: <Widget> [
