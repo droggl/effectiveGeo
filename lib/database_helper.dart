@@ -8,7 +8,7 @@ class DatabaseHelper {
 
   static final _dbName = 'myDatabase.db';
   static final _dbVersion = 1;
-  static final _tableName = 'myTable';
+  static final _tableName = 'myTableOne';
   static final _columnId = '_id';
   static final _columnName = 'name';
   static final _columnCode = 'code';

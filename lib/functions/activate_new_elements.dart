@@ -7,7 +7,7 @@ Future<List<Map>> activateNewElements(List<Map> list, int n) async{  //n entspri
   List testList = List.of(list);
 
   int random = 0;
-  for(int i = 0; i<n; i++) {
+  for(int i = 0; i<10; i++) {
     do{
        random = Random().nextInt(list.length)+1;
     }while(usedElements.contains(random));
@@ -16,6 +16,7 @@ Future<List<Map>> activateNewElements(List<Map> list, int n) async{  //n entspri
       '_id': testList.elementAt(random)['id'],
       'active': 1,
     });
+    print("Element altiviert");
     erg.add(testList.elementAt(random));
     usedElements.add(random);
   }

@@ -1,34 +1,41 @@
+import 'package:flutter/material.dart';
+
 import '../database_helper.dart';
 import 'activate_new_elements.dart';
 
 Future<List<Map>> extractLearningList(List<Map>list) async{
-  List<Map> completeList = List.of(list);
-  List<Map> removeList = List.of(list);
+  List<Map> completeList = List.from(list);
+  List<Map> removeList = List.from(list);
   List<Map>erg = [];
 
-  int j = 0;
+  int idx = 0;
   for(int i= 0; i<list.length-1; i++ ){
-    int active = list.elementAt(j)['active'];
-    if(active==1){   //Vokabel schon im Lernzyklus?
-      int interval = list.elementAt(j)['interval'];
-      if(interval<=currentTimeInMinutes()){ //Muss Vokabel schon wieder gelernt werden?
-        Map val = removeList.removeAt(j);
+    print("interval");
+    print( removeList.elementAt(idx)['interval']);
+    print(currentTimeInMinutes());
+    if(removeList.elementAt(idx)['active']==1){   //Vokabel schon im Lernzyklus?
+       int interval = removeList.elementAt(idx)['interval'];
+      if(interval<currentTimeInMinutes()){ //Muss Vokabel schon wieder gelernt werden?
+        print("HHHAAAAAAAALLLLLLOOO");
+        Map val = removeList.removeAt(idx);
+
         erg.add(val);
       }else {
-        var a = removeList.removeAt(j); //alle Vokabeln die sich bereits im Lernzyklus befinden werden aus
+        var a = removeList.removeAt(idx); //alle Vokabeln die sich bereits im Lernzyklus befinden werden aus
         // temporärer Liste entfern, damit sie bei der Auswahl der neuen Vokabeln
         //keine Rolle spielen
       }
-      j-=1;   //durch remove muss Liste immer angepasst werden
+      idx-=1;   //durch remove muss Liste immer angepasst werden
     }
-    j+=1;
+    idx+=1;
   }
 
 
 
+
   if(list.elementAt(250)["time"] < currentTimeInMinutes()) {   //wenn zeit für neue vokabeln zu lernen (24 Stunden nach letzter Nutzung der App) und
-    print(list.elementAt(250)["time"]);
-    int n = 10;            //puffer nicht zu voll!  (ca. 30???)
+    int n = 10;
+    print("hallo");
     List getNewElements = await activateNewElements(removeList, n);
     for (int i = 0; i < n; i++) {
       erg.add(getNewElements.elementAt(i));
@@ -44,14 +51,16 @@ Future<List<Map>> extractLearningList(List<Map>list) async{
 
 
 ////////////////////////////////////////////////////////////////
+ // print(erg.length);
   return erg;
 }
 
 
 
 int currentTimeInMinutes() {
-var ms = (new DateTime.now()).millisecondsSinceEpoch;
-return ((ms / 1000)/60).round();
+int ms = (new DateTime.now()).millisecondsSinceEpoch;
+double a = (ms/1000)/60;
+return a.round();
 }
 
 

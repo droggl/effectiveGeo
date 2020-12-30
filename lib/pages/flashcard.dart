@@ -17,17 +17,19 @@ class Flashcard extends StatefulWidget {
 
 class _FlashcardState extends State<Flashcard> {
   bool showAnswer = false;
-  bool done = learningList.length == 0;
+  bool done = learnList.length == 0;
    final Sm sm = Sm();
 
-  void rateCard(int quality) async {
+
+
+  void rateCard(int quality, List<Map> tempList) async {
+
 
     print("before update:");
-    print(learningList[0]);
 
-    int reps =learningList[0]['reps'];
-    int previousInterval = learningList[0]['interval'];
-    double easeFactor = learningList[0]['easeFactor'];
+    int reps =tempList[0]['reps'];
+    int previousInterval = tempList[0]['interval'];
+    double easeFactor = tempList[0]['easeFactor'];
 
     SmResponse smResponse = sm.calc(
         quality: quality,
@@ -36,27 +38,23 @@ class _FlashcardState extends State<Flashcard> {
         previousEaseFactor: easeFactor,
     );
 
-    print(smResponse.repetitions);
-    print(smResponse.interval);
-    print(smResponse.easeFactor);
+    //print(smResponse.repetitions);
+    //print(smResponse.interval);
+    //print(smResponse.easeFactor);
     int test = await DatabaseHelper.instance.update({
-      '_id': learningList[0]['id'],
+      '_id': tempList[0]['id'],
       'reps':  smResponse.repetitions,
       'quality':  quality,
       'easeFactor': smResponse.easeFactor,
-      'interval' : (smResponse.interval * 14440)+currentTimeInMinutes(), //Zeit bis zur naechsten abfrage
-      //'active': 1,
+      'interval' : currentTimeInMinutes()+2//(smResponse.interval * 14440)+currentTimeInMinutes(), //Zeit bis zur naechsten abfrage
     });
-    print(test);
-    print(learningList[0]['id']);
-
 
     showAnswer = false;
-    learningList.removeAt(0);
-    if(learningList.length==0){
+    tempList.removeAt(0);
+    if(tempList.length==0){
       done = true;
     }
-
+    learnList = List.of(tempList);
     setState(() {});
     // getData(context);
     // List<Map> testList = await DatabaseHelper.instance.queryAll();
@@ -65,6 +63,9 @@ class _FlashcardState extends State<Flashcard> {
 
   @override
   Widget build(BuildContext context) {
+    List<Map> tempList = List.of((learnList));
+    print(tempList.length);
+
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Scaffold(
@@ -93,7 +94,7 @@ class _FlashcardState extends State<Flashcard> {
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 child: Center(
                   child: Text(
-                    learningList[0]["name"],
+                    learnList[0]["name"],
                     style: TextStyle(
                         color: Colors.amber,
                         fontSize: 23,
@@ -119,7 +120,7 @@ class _FlashcardState extends State<Flashcard> {
                       borderRadius: BorderRadius.all(Radius.circular(5))),
                   child: Center(
                     child: Text(
-                      learningList[0]["capital"],
+                      learnList[0]["capital"],
                       style: TextStyle(
                           color: Colors.amber,
                           fontSize: 23,
@@ -172,7 +173,7 @@ class _FlashcardState extends State<Flashcard> {
                       ),
                     ),
                     onPressed: () {
-                      rateCard(0);
+                      rateCard(0, tempList);
                     },
                     child: Text(
                       "<10min\nAgain",
@@ -196,7 +197,7 @@ class _FlashcardState extends State<Flashcard> {
                       ),
                     ),
                     onPressed: () {
-                      rateCard(3);
+                      rateCard(3, tempList);
                     },
                     child: Text(
                       "Hard",
@@ -220,7 +221,7 @@ class _FlashcardState extends State<Flashcard> {
                         ),
                       ),
                       onPressed: () {
-                        rateCard(4);
+                        rateCard(4, tempList);
                       },
                       child: Text(
                         "Good",
@@ -244,7 +245,7 @@ class _FlashcardState extends State<Flashcard> {
                       ),
                     ),
                     onPressed: () {
-                      rateCard(5);
+                      rateCard(5, tempList);
                     },
                     child: Text(
                       "Easy",
