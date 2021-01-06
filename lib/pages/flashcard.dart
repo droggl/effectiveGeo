@@ -38,6 +38,8 @@ class _FlashcardState extends State<Flashcard> {
       previousEaseFactor: easeFactor,
     );
 
+    print(smResponse);
+
     //print(smResponse.repetitions);
     //print(smResponse.interval);
     //print(smResponse.easeFactor);
@@ -46,8 +48,12 @@ class _FlashcardState extends State<Flashcard> {
       'reps':  smResponse.repetitions,
       'quality':  quality,
       'easeFactor': smResponse.easeFactor,
-      'interval' : (smResponse.interval * 14440)+currentTimeInMinutes(), //Zeit bis zur naechsten abfrage
+      'interval' : ((smResponse.interval * 14440)/2).round()+currentTimeInMinutes(), //Zeit bis zur naechsten abfrage //die durch 2 ist von mir
     });
+
+
+    print("Interval: $smResponse.interval");
+    print(smResponse.interval);
 
     showAnswer = false;
     tempList.removeAt(0);
@@ -98,8 +104,8 @@ class _FlashcardState extends State<Flashcard> {
                     learnList[0]["name"],
                     style: TextStyle(
                         color: Colors.amber,
-                        fontSize: 23,
-                        letterSpacing: 3),
+                        fontSize: 12,
+                        letterSpacing: 1.5),
                   ),
                 ),
               ),
@@ -115,7 +121,7 @@ class _FlashcardState extends State<Flashcard> {
                 width: double.infinity,
                 height: queryData.size.height / 3,
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
                   decoration: BoxDecoration(
                       color: Colors.grey[800],
                       borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -124,8 +130,8 @@ class _FlashcardState extends State<Flashcard> {
                       learnList[0]["capital"],
                       style: TextStyle(
                           color: Colors.amber,
-                          fontSize: 23,
-                          letterSpacing: 3),
+                          fontSize: 14,  //23
+                          letterSpacing: 1.5), // 3
                     ),
                   ),
                 ),
@@ -154,7 +160,7 @@ class _FlashcardState extends State<Flashcard> {
                     "Show answer",
                     style: TextStyle(
                       color: Colors.amber,
-                      fontSize: 23,
+                      fontSize: 11,  //23
                       letterSpacing: 3,
                     )
                 ),

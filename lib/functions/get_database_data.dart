@@ -12,10 +12,10 @@ void getData(BuildContext context) async{
 
   if (countries.length > 0){  // wenn nich leer
     countriesEnglish = List.from(countries);
-    countriesEnglish.removeAt(250);
+    countriesEnglish.removeAt(countries.length-1);
 
     filteredCountriesEnglish = List.from(countries);
-    filteredCountriesEnglish.removeAt(250);
+    filteredCountriesEnglish.removeAt(countries.length-1);
 
     print("database already initialized!");
   }
@@ -28,7 +28,7 @@ void getData(BuildContext context) async{
       //initiale Datenbank wird erstellt und mit den Ländern aus response befüllt
       int n = await DatabaseHelper.instance.insert({
         'name':instance['name'],
-        'code':instance['alpha2Code'],
+        'code': instance['alpha2Code'],
         'capital':instance['capital'],
         'continent':instance['subregion'],
         'population':instance['population'],
@@ -43,29 +43,29 @@ void getData(BuildContext context) async{
 
     }  //for schleife ende
 
-     int n = await DatabaseHelper.instance.insert({  //Element 251 dient als Referenz und gibt in 'time' an,
-       'name':"",                                    //wann das letzte mal gelernt wurde.
-       'code':"",                                    //zeit muss nach lernen der flahcard gesetzt werden.
-       'capital':"",
-       'continent':"",
-       'population':"",
-       'time': 0,
-       'reps': 0,
-       'quality': 0,
-       'easeFactor': 0,
-       'interval' : 0,
-       'active': 0,
-       'id': 251
-     },);
+    int n = await DatabaseHelper.instance.insert({  //Element 251 dient als Referenz und gibt in 'time' an,
+      'name':"",                                    //wann das letzte mal gelernt wurde.
+      'code':"",                                    //zeit muss nach lernen der flahcard gesetzt werden.
+      'capital':"",
+      'continent':"",
+      'population':"",
+      'time': 0,
+      'reps': 0,
+      'quality': 0,
+      'easeFactor': 0,
+      'interval' : 0,
+      'active': 0,
+      'id': element.length+1
+    },);
 
     countries = await DatabaseHelper.instance.queryAll();
     print("database initialized!");
 
     countriesEnglish = List.from(countries);
-    countriesEnglish.removeAt(250);
+    countriesEnglish.removeAt(countries.length-1);
 
     filteredCountriesEnglish = List.from(countries);
-    filteredCountriesEnglish.removeAt(250);
+    filteredCountriesEnglish.removeAt(countries.length-1);
 
   }
 
