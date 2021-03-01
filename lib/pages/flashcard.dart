@@ -1,9 +1,10 @@
 import 'package:effective_geo/functions/extract_learning_list.dart';
 import 'package:flutter/material.dart';
-import 'package:effective_geo/data/countries_english.dart';
 import 'package:effective_geo/data/learning_list.dart';
 import 'package:effective_geo/database_helper.dart';
 import 'package:effective_geo/functions/sm_algorithm/sm.dart';
+import 'package:effective_geo/functions/voc_counter.dart';
+import '../main.dart';
 
 
 double fontSizeEvaluation = 15;
@@ -16,6 +17,7 @@ class Flashcard extends StatefulWidget {
 }
 
 class _FlashcardState extends State<Flashcard> {
+  final vocabCounter = getIt.get<Counter>();              // Counter-singleton
   bool showAnswer = false;
   bool done = learnList.length == 0;
   final Sm sm = Sm();
@@ -61,7 +63,7 @@ class _FlashcardState extends State<Flashcard> {
       done = true;
     }
     learnList = List.of(tempList);
-    vocCount = learnList.length;
+    vocabCounter.set(learnList.length);
     setState(() {});
     // getData(context);
     // List<Map> testList = await DatabaseHelper.instance.queryAll();

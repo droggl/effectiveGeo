@@ -1,3 +1,4 @@
+import 'package:effective_geo/functions/voc_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:effective_geo/pages/home.dart';
 import 'package:effective_geo/pages/country_table.dart';
@@ -5,13 +6,22 @@ import 'package:effective_geo/pages/loading.dart';
 import 'package:effective_geo/pages/settings.dart';
 import 'package:effective_geo/pages/navigation.dart';
 import 'package:effective_geo/pages/flashcard.dart';
+import 'package:get_it/get_it.dart';
 
-void main() => runApp(EffectiveGeo());
+//global ServiceLocator
+GetIt getIt = GetIt.instance;
+
+void main() {
+  getIt.registerSingleton<Counter>(Counter());   //Counter variable die sich die Anzahl der zu lernenden vocs merkt
+  runApp(EffectiveGeo());
+}
 
 class EffectiveGeo extends StatelessWidget {
 
+
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
         onPanDown: (details) {
           FocusScopeNode currentFocus = FocusScope.of(context);

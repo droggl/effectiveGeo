@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'extract_learning_list.dart';
 import 'package:effective_geo/data/learning_list.dart';
+import '../main.dart';
+import 'package:effective_geo/functions/voc_counter.dart';
 
 void getData(BuildContext context) async{
 
@@ -20,6 +22,7 @@ void getData(BuildContext context) async{
     print("database already initialized!");
   }
   else{
+
     var response = await Dio().get("https://restcountries.eu/rest/v2/all");  //wenn leer
     List element = response.data;
     for(int i = 0; i<element.length; i++){  //250 mal
@@ -70,7 +73,9 @@ void getData(BuildContext context) async{
   }
 
   learnList = await extractLearningList(countries);
-  vocCount = learnList.length;
+  final vocabCounter = getIt.get<Counter>();
+  vocabCounter.set(learnList.length);               //Anzahl der zu lernenden vokabeln wird gesetzt
+  //vocCount = learnList.length;
 
   Navigator.pushReplacementNamed(context, '/navigation');
 }
