@@ -1,23 +1,22 @@
-import 'package:effective_geo/data/countries_english.dart';
 import 'package:effective_geo/database_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'extract_learning_list.dart';
-import 'package:effective_geo/data/learning_list.dart';
 import '../main.dart';
 import 'package:effective_geo/functions/voc_counter.dart';
+import 'package:effective_geo/data/globals.dart' as globals;
 
 void getData(BuildContext context) async{
 
   List<Map<String, dynamic>> countries = await DatabaseHelper.instance.queryAll();
 
   if (countries.length > 0){  // wenn nich leer
-    countriesEnglish = List.from(countries);
-    countriesEnglish.removeAt(countries.length-1);
+    globals.countriesEnglish = List.from(countries);
+    globals.countriesEnglish.removeAt(countries.length-1);
 
-    filteredCountriesEnglish = List.from(countries);
-    filteredCountriesEnglish.removeAt(countries.length-1);
+    globals.filteredCountriesEnglish = List.from(countries);
+    globals.filteredCountriesEnglish.removeAt(countries.length-1);
 
     print("database already initialized!");
   }
@@ -64,17 +63,16 @@ void getData(BuildContext context) async{
     countries = await DatabaseHelper.instance.queryAll();
     print("database initialized!");
 
-    countriesEnglish = List.from(countries);
-    countriesEnglish.removeAt(countries.length-1);
+    globals.countriesEnglish = List.from(countries);
+    globals.countriesEnglish.removeAt(countries.length-1);
 
-    filteredCountriesEnglish = List.from(countries);
-    filteredCountriesEnglish.removeAt(countries.length-1);
-
+    globals.filteredCountriesEnglish = List.from(countries);
+    globals.filteredCountriesEnglish.removeAt(countries.length-1);
   }
 
-  learnList = await extractLearningList(countries);
+  globals.learnList = await extractLearningList(countries);
   final vocabCounter = getIt.get<Counter>();
-  vocabCounter.set(learnList.length);               //Anzahl der zu lernenden vokabeln wird gesetzt
+  vocabCounter.set(globals.learnList.length);               //Anzahl der zu lernenden vokabeln wird gesetzt
   //vocCount = learnList.length;
 
   Navigator.pushReplacementNamed(context, '/navigation');

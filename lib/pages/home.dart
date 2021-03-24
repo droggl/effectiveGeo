@@ -1,6 +1,5 @@
 import 'package:effective_geo/functions/voc_counter.dart';
 import 'package:flutter/material.dart';
-//import 'package:effective_geo/data/globals.dart' as globals;
 import '../main.dart';
 
 

@@ -1,7 +1,7 @@
-import 'package:effective_geo/data/countries_english.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:effective_geo/country.dart';
+import 'package:effective_geo/data/globals.dart'as globals;
 
 class CountryCard extends StatelessWidget {
 
@@ -11,7 +11,7 @@ class CountryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map country = filteredCountriesEnglish[index];
+    Map country = globals.filteredCountriesEnglish[index];
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(

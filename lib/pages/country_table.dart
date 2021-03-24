@@ -1,7 +1,7 @@
 import 'package:effective_geo/cards/country_card.dart';
-import 'package:effective_geo/data/countries_english.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:effective_geo/data/globals.dart' as globals;
 
 class CountryTable extends StatefulWidget {
   @override
@@ -17,7 +17,7 @@ class _CountryTableState extends State<CountryTable> {
 
   onItemChanged(String value) {
     setState(() {
-      filteredCountriesEnglish = countriesEnglish
+      globals.filteredCountriesEnglish = globals.countriesEnglish
           .where((string) => string["name"].toLowerCase().contains(value.toLowerCase()))
           .toList();
     });
@@ -58,7 +58,7 @@ class _CountryTableState extends State<CountryTable> {
       ),
       body: SafeArea(
         child: ListView.builder(
-          itemCount: filteredCountriesEnglish.length,
+          itemCount: globals.filteredCountriesEnglish.length,
           itemBuilder: (context, index){
             return CountryCard(index: index);
           },

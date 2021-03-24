@@ -1,10 +1,9 @@
 import 'package:effective_geo/functions/extract_learning_list.dart';
 import 'package:flutter/material.dart';
-import 'package:effective_geo/data/learning_list.dart';
 import 'package:effective_geo/database_helper.dart';
 import 'package:effective_geo/functions/sm_algorithm/sm.dart';
 import 'package:effective_geo/functions/voc_counter.dart';
-//import 'package:effective_geo/data/globals.dart' as globals;
+import 'package:effective_geo/data/globals.dart' as globals;
 import '../main.dart';
 
 double fontSizeEvaluation = 15;
@@ -20,7 +19,7 @@ class _FlashcardState extends State<Flashcard> {
   final vocabCounter = getIt.get<Counter>();              // Counter-singleton1
   final knownVocabCounter = getKnownVocs.get<KnownCounter>();   // Counter-singleton2
   bool showAnswer = false;
-  bool done = learnList.length == 0;
+  bool done = globals.learnList.length == 0;
   final Sm sm = Sm();
 
 
@@ -63,8 +62,8 @@ class _FlashcardState extends State<Flashcard> {
     if(tempList.length==0){
       done = true;
     }
-    learnList = List.of(tempList);
-    vocabCounter.set(learnList.length);
+    globals.learnList = List.of(tempList);
+    vocabCounter.set(globals.learnList.length);
     knownVocabCounter.incrementKnownVocs();
 
     //globals.knownVocabs+=1;
@@ -77,7 +76,7 @@ class _FlashcardState extends State<Flashcard> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map> tempList = List.of((learnList));
+    List<Map> tempList = List.of((globals.learnList));
     print(tempList.length);
 
     MediaQueryData queryData;
@@ -108,7 +107,7 @@ class _FlashcardState extends State<Flashcard> {
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 child: Center(
                   child: Text(
-                    learnList[0]["name"],
+                    globals.learnList[0]["name"],
                     style: TextStyle(
                         color: Colors.amber,
                         fontSize: 12,
@@ -134,7 +133,7 @@ class _FlashcardState extends State<Flashcard> {
                       borderRadius: BorderRadius.all(Radius.circular(5))),
                   child: Center(
                     child: Text(
-                      learnList[0]["capital"],
+                      globals.learnList[0]["capital"],
                       style: TextStyle(
                           color: Colors.amber,
                           fontSize: 14,  //23

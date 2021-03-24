@@ -1,6 +1,6 @@
-import 'package:effective_geo/data/countries_english.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:effective_geo/data/globals.dart' as globals;
 
 class Country extends StatefulWidget {
 
@@ -15,7 +15,7 @@ class _CountryState extends State<Country> {
 
   @override
   Widget build(BuildContext context) {
-    Map country = filteredCountriesEnglish[widget.index];
+    Map country = globals.filteredCountriesEnglish[widget.index];
 
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
@@ -39,7 +39,7 @@ class _CountryState extends State<Country> {
         }
         if (details.delta.dx < -1){
           // swiping in left direction
-          if (widget.index < filteredCountriesEnglish.length-1) {
+          if (widget.index < globals.filteredCountriesEnglish.length-1) {
             widget.index += 1;
             setState(() {});
           }
