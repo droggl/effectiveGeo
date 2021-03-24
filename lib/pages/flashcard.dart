@@ -4,8 +4,8 @@ import 'package:effective_geo/data/learning_list.dart';
 import 'package:effective_geo/database_helper.dart';
 import 'package:effective_geo/functions/sm_algorithm/sm.dart';
 import 'package:effective_geo/functions/voc_counter.dart';
+//import 'package:effective_geo/data/globals.dart' as globals;
 import '../main.dart';
-
 
 double fontSizeEvaluation = 15;
 dynamic buttonColor = Colors.grey[900];
@@ -17,7 +17,8 @@ class Flashcard extends StatefulWidget {
 }
 
 class _FlashcardState extends State<Flashcard> {
-  final vocabCounter = getIt.get<Counter>();              // Counter-singleton
+  final vocabCounter = getIt.get<Counter>();              // Counter-singleton1
+  final knownVocabCounter = getKnownVocs.get<KnownCounter>();   // Counter-singleton2
   bool showAnswer = false;
   bool done = learnList.length == 0;
   final Sm sm = Sm();
@@ -64,6 +65,10 @@ class _FlashcardState extends State<Flashcard> {
     }
     learnList = List.of(tempList);
     vocabCounter.set(learnList.length);
+    knownVocabCounter.incrementKnownVocs();
+
+    //globals.knownVocabs+=1;
+
     setState(() {});
     // getData(context);
     // List<Map> testList = await DatabaseHelper.instance.queryAll();

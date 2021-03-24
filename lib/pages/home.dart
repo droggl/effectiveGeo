@@ -1,13 +1,14 @@
 import 'package:effective_geo/functions/voc_counter.dart';
 import 'package:flutter/material.dart';
-//import 'package:effective_geo/data/learning_list.dart';
+//import 'package:effective_geo/data/globals.dart' as globals;
 import '../main.dart';
 
 
 class Home extends StatelessWidget{
 
-  final double prozenti = 20;
+  //final int prozent = (globals.progress*100).round();
   final vocabCounter = getIt.get<Counter>();
+  final knownVocabCounter = getKnownVocs.get<KnownCounter>();
 
   @override
   Widget build(BuildContext context) {
@@ -112,19 +113,19 @@ class Home extends StatelessWidget{
                   Expanded(
                     flex: 1,
                     child: Container(
-                      margin: EdgeInsets.fromLTRB(spaceFive, spaceOne, 0, 0),
-                      child: StreamBuilder(                          //bei Veränderung von getIt(in main deklariert), wird auch vocabCounter
-                        stream: vocabCounter.stream$,                // verändert (StateMenagement mit Behavior subject).
-                        builder: (context, snapshot) {
-                          return Text('${snapshot.data}',
-                            style: TextStyle(
-                            color: Colors.red,
-                              fontSize: 18,
-                              letterSpacing: 1.5
-                          ),
-                          );
-                        },
-                      )
+                        margin: EdgeInsets.fromLTRB(spaceFive, spaceOne, 0, 0),
+                        child: StreamBuilder(                          //bei Veränderung von getIt(in main deklariert), wird auch vocabCounter
+                          stream: vocabCounter.stream$,                // verändert (StateMenagement mit Behavior subject).
+                          builder: (context, snapshot) {
+                            return Text('${snapshot.data}',
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 18,
+                                  letterSpacing: 1.5
+                              ),
+                            );
+                          },
+                        )
                     ),
                   ),
 
@@ -162,25 +163,50 @@ class Home extends StatelessWidget{
                 height: 10,
               ),
 
-
-              Padding(
-                padding: EdgeInsets.fromLTRB(spaceOne, 0, spaceOne, 0),
-                child: LinearProgressIndicator(
-                    minHeight: 15,
-                    value: prozenti/100,
-                    backgroundColor: Colors.grey[900],
-                    valueColor:  new AlwaysStoppedAnimation<Color>(Colors.amber)
-
-
-                ),
-
+              StreamBuilder(
+                stream: knownVocabCounter.knownVocabStream$,
+                builder: (context, snapshot) {
+                  double val;
+                  if(!snapshot.hasData){
+                    print('still waiting for data...');
+                    val = 0;
+                  }
+                    else if(snapshot.hasData){
+                      print('data received');
+                      val = snapshot.data/256;// 265 entspricht der Anzahl aller vokabeln also 100%
+                  }
+                  return Padding(
+                    padding: EdgeInsets.fromLTRB(spaceOne, 0, spaceOne, 0),
+                    child: LinearProgressIndicator(
+                        minHeight: 15,
+                        value: val,
+                        backgroundColor: Colors.grey[900],
+                        valueColor:  new AlwaysStoppedAnimation<Color>(Colors.amber)
+                    ),
+                  );
+                },
               ),
-              Text("$prozenti %",
-                style: TextStyle(
-                    color: Colors.amber,
-                    letterSpacing: 1,
-                    fontSize: 18
-                ),
+
+              StreamBuilder(
+                  stream: knownVocabCounter.knownVocabStream$,
+                  builder: (context, snapshot){
+                    int val;
+                    if(!snapshot.hasData){
+                      val = 0;
+                      print('still waiting for data...');
+                    }
+                    else if(snapshot.hasData){
+                      val = (snapshot.data/256*100).round();
+                    }
+
+                    return  Text(val.toString() + '%',
+                      style: TextStyle(
+                          color: Colors.amber,
+                          letterSpacing: 1,
+                          fontSize: 18
+                      ),
+                    );
+                  }
               )
             ]
 
