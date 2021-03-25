@@ -3,115 +3,109 @@ import 'package:flutter/material.dart';
 import 'package:effective_geo/data/globals.dart' as globals;
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-class Country extends StatefulWidget {
-
-  int index;
+class Country extends StatelessWidget {
+  final int index;
   Country({this.index});   //index wird über Konstruktor instanziiert
 
-  @override
-  _CountryState createState() => _CountryState();
-}
-
-class _CountryState extends State<Country> {
   @override
   Widget build(BuildContext context) {
     //Map country = globals.filteredCountriesEnglish[widget.index];
 
-    MediaQueryData queryData;
-    queryData = MediaQuery.of(context);
+    // queryData;
+    final MediaQueryData queryData = MediaQuery.of(context);
 
     return Scaffold(
-          backgroundColor: Colors.grey[850],
+        backgroundColor: Colors.grey[850],
 
-          body: new Swiper(
-            itemBuilder: (BuildContext context, int index) {
-              if(index == 0){
-                index=widget.index;
-              }
+        body: new Swiper(
+          itemBuilder: (BuildContext context, int index) {
+            if(index == 0){
+              index=this.index;
+            }
 
 
-              Map country = globals.filteredCountriesEnglish[index];
-              String img = country["code"];
-              if (img != null) {
-                String a = img[0].toLowerCase();
-                String b = img[1].toLowerCase();
-                img = a + b;
-              }
+            Map country = globals.filteredCountriesEnglish[index];
+            String img = country["code"];
+            if (img != null) {
+              String a = img[0].toLowerCase();
+              String b = img[1].toLowerCase();
+              img = a + b;
+            }
 
-              return Scaffold(
+            return Scaffold(
 
-                  appBar: AppBar(
-                    backgroundColor: Colors.grey[900],
-                    title: Text(
-                      country["name"],
-                      style: TextStyle(
-                          letterSpacing: 2,
-                          color: Colors.white
+              appBar: AppBar(
+                backgroundColor: Colors.grey[900],
+                title: Text(
+                  country["name"],
+                  style: TextStyle(
+                      letterSpacing: 2,
+                      color: Colors.white
 
-                      ),
-                    ),
                   ),
-
-
-                  body: Column(  //muss da new hin??
-                    children: [
-                      Image.asset("assets/flags/" + img + ".png",
-                          //"assets/welt.jpg"  "flags/"+img + ".png"
-                          width: queryData.size.height / 1),
-
-                      SizedBox(
-                          height: queryData.size.height / 30
-                      ),
-                      Text(
-                        "Capital: " + country["capital"],
-                        style: TextStyle(
-                            letterSpacing: 2,
-                            fontSize: 18,
-                            color: Colors.white
-                        ),
-                      ),
-                      SizedBox(
-                          height: queryData.size.height / 20
-                      ),
-                      Text(
-                        "Region: " + country["continent"],
-                        style: TextStyle(
-                            letterSpacing: 2,
-                            fontSize: 18,
-                            color: Colors.white
-                        ),
-                      ),
-                      SizedBox(
-                          height: queryData.size.height / 20
-                      ),
-
-                      Text(
-                        "Population: " + country["population"],
-                        style: TextStyle(
-                            letterSpacing: 2,
-                            fontSize: 18,
-                            color: Colors.white
-                        ),
-                      ),
-                    ],
-                  ),
-              );
-            },
-
-            //indicatorLayout: PageIndicatorLayout.COLOR,
-            //autoplay: true,
-            itemCount: globals.filteredCountriesEnglish.length,
-            index: widget.index,
-            pagination: new SwiperPagination(
-              builder: new FractionPaginationBuilder(
-                color: Colors.black,
-                activeColor: Colors.amber,
-
+                ),
               ),
 
+
+              body: Column(  //muss da new hin??
+                children: [
+                  Image.asset("assets/flags/" + img + ".png",
+                      //"assets/welt.jpg"  "flags/"+img + ".png"
+                      width: queryData.size.height / 1),
+
+                  SizedBox(
+                      height: queryData.size.height / 30
+                  ),
+                  Text(
+                    "Capital: " + country["capital"],
+                    style: TextStyle(
+                        letterSpacing: 2,
+                        fontSize: 18,
+                        color: Colors.white
+                    ),
+                  ),
+                  SizedBox(
+                      height: queryData.size.height / 20
+                  ),
+                  Text(
+                    "Region: " + country["continent"],
+                    style: TextStyle(
+                        letterSpacing: 2,
+                        fontSize: 18,
+                        color: Colors.white
+                    ),
+                  ),
+                  SizedBox(
+                      height: queryData.size.height / 20
+                  ),
+
+                  Text(
+                    "Population: " + country["population"],
+                    style: TextStyle(
+                        letterSpacing: 2,
+                        fontSize: 18,
+                        color: Colors.white
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+
+          //indicatorLayout: PageIndicatorLayout.COLOR,
+          //autoplay: true,
+          itemCount: globals.filteredCountriesEnglish.length,
+          index: this.index,
+          pagination: new SwiperPagination(
+            builder: new FractionPaginationBuilder(
+              color: Colors.black,
+              activeColor: Colors.amber,
+
             ),
-            control: new SwiperControl(),
-          )
+
+          ),
+          control: new SwiperControl(),
+        )
     );
 
 

@@ -11,18 +11,21 @@ class CountryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData = MediaQuery.of(context);
+    double spaceOne = queryData.size.height/5;
     Map country = globals.filteredCountriesEnglish[index];
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context){
-            return Country(index: index);
-          }
+            builder: (context){
+              return Country(index: index);
+            }
         )
         );
       },
       child: Card(
         color: Colors.grey[700],
+        //shadowColor: Colors.black,
         margin: EdgeInsets.fromLTRB(4, 4, 4, 4),
 
         child: Padding(
@@ -30,15 +33,30 @@ class CountryCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Center(
-                child: Text(
-                  country["name"],
-                  style: TextStyle(
-                    color: Colors.amber,
-                    fontSize: 17,
-                    letterSpacing: 2
-                  ),
-                ),
+              Row(
+                  children: [
+                    Expanded(
+                      flex: 19,
+                      child: Center(
+                       // margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: Text(
+                          country["name"],
+                          style: TextStyle(
+                              color: Colors.amber,
+                              fontSize: 17,
+                              letterSpacing: 2
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        color: Colors.grey[800],
+                      ),
+                    ),
+                  ]
               )
             ],
           ),
