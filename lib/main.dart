@@ -32,8 +32,29 @@ class EffectiveGeo extends StatelessWidget {
         child: MaterialApp(
           title: "Effective geo",
           theme: ThemeData(
-            primaryColor: Colors.grey[900],
+            primaryColor: Colors.grey[850],
             brightness: Brightness.dark,
+            accentColor: Colors.grey[900],
+            cardColor: Colors.grey[800],
+            buttonColor: Colors.amber,
+            textTheme: TextTheme(
+              headline1: TextStyle(
+                fontSize: 25,
+                color: Colors.amber,
+                letterSpacing: 1.5,
+              ),
+                  headline2: TextStyle(
+                    fontSize: 23,
+                    color: Colors.amber,
+                    letterSpacing: 1.5,
+            ),
+              headline3: TextStyle(
+                fontSize: 23,
+                color: Colors.amber,
+                letterSpacing: 1.5,
+
+              )
+            )
           ),
           //initialRoute: '/navigation',
 

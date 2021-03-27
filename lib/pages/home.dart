@@ -18,7 +18,7 @@ class Home extends StatelessWidget{
     double spaceFive = queryData.size.height/50;
 
     return Scaffold(
-      backgroundColor: Colors.grey[850],
+      backgroundColor: Theme.of(context).primaryColor,
       body: SingleChildScrollView(
         child: Column(
             children: [
@@ -40,11 +40,7 @@ class Home extends StatelessWidget{
                     child: SafeArea(
                       child: Text(
                         "Effective Geo",
-                        style: TextStyle(
-                            color: Colors.amber,
-                            fontSize: 23,
-                            letterSpacing: 3
-                        ),
+                        style: Theme.of(context).textTheme.headline2
                       ),
 
                     ),
@@ -91,10 +87,10 @@ class Home extends StatelessWidget{
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                           side: BorderSide(
-                              color: Colors.amber
+                              color: Theme.of(context).buttonColor
                           )
                       ),
-                      color: Colors.grey[900],
+                      color: Theme.of(context).accentColor,
                       onPressed: () {
                         Navigator.pushNamed(context, "/flashcard");
                         //setState(() {});
@@ -102,7 +98,7 @@ class Home extends StatelessWidget{
                       child: Text(
                         "Start Learning",
                         style: TextStyle(
-                            color: Colors.amber,
+                            color: Theme.of(context).buttonColor,
                             fontSize: 25,
                             letterSpacing: 1.5
                         ),
@@ -152,11 +148,7 @@ class Home extends StatelessWidget{
 
               Text(
                 "Your Progress",
-                style: TextStyle(
-                    color: Colors.amber,
-                    fontSize: 18,
-                    letterSpacing: 2
-                ),
+                style: Theme.of(context).textTheme.headline2
               ),
               SizedBox(
                 height: 10,
@@ -168,8 +160,8 @@ class Home extends StatelessWidget{
                 child: LinearProgressIndicator(
                     minHeight: 15,
                     value: prozenti/100,
-                    backgroundColor: Colors.grey[900],
-                    valueColor:  new AlwaysStoppedAnimation<Color>(Colors.amber)
+                    backgroundColor: Theme.of(context).accentColor,
+                    valueColor:  new AlwaysStoppedAnimation<Color>(Theme.of(context).buttonColor)
 
 
                 ),
@@ -177,7 +169,7 @@ class Home extends StatelessWidget{
               ),
               Text("$prozenti %",
                 style: TextStyle(
-                    color: Colors.amber,
+                    color: Theme.of(context).buttonColor,
                     letterSpacing: 1,
                     fontSize: 18
                 ),

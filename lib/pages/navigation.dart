@@ -27,15 +27,15 @@ class _NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     return Scaffold(
         body:  routeList[currentIndex],
-        backgroundColor: Colors.grey[850],
+        backgroundColor: Theme.of(context).primaryColor,
 
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           onTap: _onItemClick,
           type:BottomNavigationBarType.fixed,
-          backgroundColor: Colors.grey[900],
+          backgroundColor: Theme.of(context).accentColor,
           selectedItemColor: Colors.amber,
-          unselectedItemColor: Colors.grey[800],
+          unselectedItemColor: Theme.of(context).primaryColor,
 
           items: [
             BottomNavigationBarItem(

@@ -27,7 +27,7 @@ class _CountryTableState extends State<CountryTable> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Theme.of(context).accentColor,
       appBar: AppBar(
         title:  Padding(
           padding: const EdgeInsets.all(4.0),
@@ -49,7 +49,7 @@ class _CountryTableState extends State<CountryTable> {
                 },
               ),
               focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.amber),
+                borderSide: BorderSide(color: Theme.of(context).buttonColor),
               ),
             ),
             onChanged: onItemChanged,

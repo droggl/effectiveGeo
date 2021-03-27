@@ -78,15 +78,15 @@ class _FlashcardState extends State<Flashcard> {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Scaffold(
-      backgroundColor: Colors.grey[850],
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Theme.of(context).accentColor,
       ),
       body: Center(
         child: done? Text(
           "Done for today",
           style: TextStyle(
-              color: Colors.amber
+              color: Theme.of( context).buttonColor
           ),
         ) : Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -99,15 +99,12 @@ class _FlashcardState extends State<Flashcard> {
               child: Container(
                 margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                 decoration: BoxDecoration(
-                    color: Colors.grey[800],
+                    color: Theme.of(context).cardColor,  //
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 child: Center(
                   child: Text(
                     learnList[0]["name"],
-                    style: TextStyle(
-                        color: Colors.amber,
-                        fontSize: 12,
-                        letterSpacing: 1.5),
+                    style: Theme.of(context).textTheme.headline2
                   ),
                 ),
               ),
@@ -125,15 +122,12 @@ class _FlashcardState extends State<Flashcard> {
                 child: Container(
                   margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
                   decoration: BoxDecoration(
-                      color: Colors.grey[800],
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.all(Radius.circular(5))),
                   child: Center(
                     child: Text(
                       learnList[0]["capital"],
-                      style: TextStyle(
-                          color: Colors.amber,
-                          fontSize: 14,  //23
-                          letterSpacing: 1.5), // 3
+                      style: Theme.of(context).textTheme.headline2, // 3
                     ),
                   ),
                 ),
