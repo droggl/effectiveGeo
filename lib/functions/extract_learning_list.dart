@@ -1,7 +1,13 @@
 import '../database_helper.dart';
 import 'activate_new_elements.dart';
+import 'package:effective_geo/main.dart';
+import 'package:effective_geo/functions/voc_counter.dart';
+//import 'package:effective_geo/data/globals.dart' as globals;
+
 
 Future<List<Map>> extractLearningList(List<Map>list) async{
+  final knownVocabCounter = getKnownVocs.get<KnownCounter>();   // Counter-singleton
+  knownVocabCounter.setZero();
   List<Map> completeList = List.from(list);
   List<Map> removeList = List.from(list);
   List<Map>erg = [];
@@ -9,7 +15,7 @@ Future<List<Map>> extractLearningList(List<Map>list) async{
   int idx = 0;
   for(int i= 0; i<list.length-1; i++ ){
     if(removeList.elementAt(idx)['active']==1){   //Vokabel schon im Lernzyklus?
-      int interval = removeList.elementAt(idx)['interval'];
+      int interval = removeList.elementAt(idx)['interval'];  //Zeit bei der die Vokabel wieder gelernt werden muss
       print("Nächstes Lernen: $interval");
       int current = currentTimeInMinutes();
       print("Aktuelle Zeit: $current");
@@ -21,6 +27,9 @@ Future<List<Map>> extractLearningList(List<Map>list) async{
         var a = removeList.removeAt(idx); //alle Vokabeln die sich bereits im Lernzyklus befinden werden aus
         // temporärer Liste entfern, damit sie bei der Auswahl der neuen Vokabeln
         //keine Rolle spielen
+       // globals.knownVocabs += 1;  //globale Vokabel
+        //globals.progress = globals.knownVocabs/completeList.length;
+        knownVocabCounter.incrementKnownVocs();  //wird inkrementiert für Progess Anzeige auf home screen
       }
       idx-=1;   //durch remove muss Liste immer angepasst werden
     }

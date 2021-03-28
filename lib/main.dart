@@ -10,9 +10,14 @@ import 'package:get_it/get_it.dart';
 
 //global ServiceLocator
 GetIt getIt = GetIt.instance;
+GetIt getKnownVocs = GetIt.instance;
 
 void main() {
+  print("klappt");
   getIt.registerSingleton<Counter>(Counter());   //Counter variable die sich die Anzahl der zu lernenden vocs merkt
+  print("kappt iwi safe nicht");
+  getKnownVocs.registerSingleton<KnownCounter>(KnownCounter());  //Counter variable die sich die Anzahl der gelernter vocs merkt
+  print("klapp safe safe net");
   runApp(EffectiveGeo());
 }
 

@@ -1,34 +1,116 @@
-import 'package:effective_geo/data/countries_english.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:effective_geo/data/globals.dart' as globals;
+import 'package:flutter_swiper/flutter_swiper.dart';
 
-class Country extends StatefulWidget {
-
-  int index;
-  Country({this.index});
-
-  @override
-  _CountryState createState() => _CountryState();
-}
-
-class _CountryState extends State<Country> {
+class Country extends StatelessWidget {
+  final int index;
+  Country({this.index});   //index wird über Konstruktor instanziiert
 
   @override
   Widget build(BuildContext context) {
-    Map country = filteredCountriesEnglish[widget.index];
+    //Map country = globals.filteredCountriesEnglish[widget.index];
 
-    MediaQueryData queryData;
-    queryData = MediaQuery.of(context);
-    String img = country["code"];
-    if (img != null) {
-      String a = img[0].toLowerCase();
-      String b = img[1].toLowerCase();
-      img = a + b;
-    }
+    // queryData;
+    final MediaQueryData queryData = MediaQuery.of(context);
 
-    // TODO swipe funktionalität verbessern + animation evtl
-    // int sensivity = 10;
-    return GestureDetector(
+    return Scaffold(
+        backgroundColor: Colors.grey[850],
+
+        body: new Swiper(
+          itemBuilder: (BuildContext context, int index) {
+            if(index == 0){
+              index=this.index;
+            }
+
+
+            Map country = globals.filteredCountriesEnglish[index];
+            String img = country["code"];
+            if (img != null) {
+              String a = img[0].toLowerCase();
+              String b = img[1].toLowerCase();
+              img = a + b;
+            }
+
+            return Scaffold(
+
+              appBar: AppBar(
+                backgroundColor: Colors.grey[900],
+                title: Text(
+                  country["name"],
+                  style: TextStyle(
+                      letterSpacing: 2,
+                      color: Colors.white
+
+                  ),
+                ),
+              ),
+
+
+              body: Column(  //muss da new hin??
+                children: [
+                  Image.asset("assets/flags/" + img + ".png",
+                      //"assets/welt.jpg"  "flags/"+img + ".png"
+                      width: queryData.size.height / 1),
+
+                  SizedBox(
+                      height: queryData.size.height / 30
+                  ),
+                  Text(
+                    "Capital: " + country["capital"],
+                    style: TextStyle(
+                        letterSpacing: 2,
+                        fontSize: 18,
+                        color: Colors.white
+                    ),
+                  ),
+                  SizedBox(
+                      height: queryData.size.height / 20
+                  ),
+                  Text(
+                    "Region: " + country["continent"],
+                    style: TextStyle(
+                        letterSpacing: 2,
+                        fontSize: 18,
+                        color: Colors.white
+                    ),
+                  ),
+                  SizedBox(
+                      height: queryData.size.height / 20
+                  ),
+
+                  Text(
+                    "Population: " + country["population"],
+                    style: TextStyle(
+                        letterSpacing: 2,
+                        fontSize: 18,
+                        color: Colors.white
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+
+          //indicatorLayout: PageIndicatorLayout.COLOR,
+          //autoplay: true,
+          itemCount: globals.filteredCountriesEnglish.length,
+          index: this.index,
+          pagination: new SwiperPagination(
+            builder: new FractionPaginationBuilder(
+              color: Colors.black,
+              activeColor: Colors.amber,
+
+            ),
+
+          ),
+          control: new SwiperControl(),
+        )
+    );
+
+
+
+    /*GestureDetector(
       onPanUpdate: (details) {
         if (details.delta.dx > 1) {
           // swiping in right direction
@@ -39,7 +121,7 @@ class _CountryState extends State<Country> {
         }
         if (details.delta.dx < -1){
           // swiping in left direction
-          if (widget.index < filteredCountriesEnglish.length-1) {
+          if (widget.index < globals.filteredCountriesEnglish.length-1) {
             widget.index += 1;
             setState(() {});
           }
@@ -120,6 +202,6 @@ class _CountryState extends State<Country> {
           ],
         ),
       ),
-    );
+    );*/
   }
 }
