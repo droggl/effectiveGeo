@@ -7,6 +7,7 @@ import 'package:effective_geo/pages/settings.dart';
 import 'package:effective_geo/pages/navigation.dart';
 import 'package:effective_geo/pages/flashcard.dart';
 import 'package:get_it/get_it.dart';
+import 'package:effective_geo/data/appThemeData.dart' as theme_globals;
 
 //global ServiceLocator
 GetIt getIt = GetIt.instance;
@@ -22,10 +23,9 @@ void main() {
 }
 
 class EffectiveGeo extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
+    theme_globals.globalThemeData = theme_globals.lightThemeData;
 
     return GestureDetector(
         onPanDown: (details) {
@@ -36,31 +36,7 @@ class EffectiveGeo extends StatelessWidget {
         },
         child: MaterialApp(
           title: "Effective geo",
-          theme: ThemeData(
-            primaryColor: Colors.grey[850],
-            brightness: Brightness.dark,
-            accentColor: Colors.grey[900],
-            cardColor: Colors.grey[800],
-            buttonColor: Colors.amber,
-            textTheme: TextTheme(
-              headline1: TextStyle(
-                fontSize: 25,
-                color: Colors.amber,
-                letterSpacing: 1.5,
-              ),
-                  headline2: TextStyle(
-                    fontSize: 23,
-                    color: Colors.amber,
-                    letterSpacing: 1.5,
-            ),
-              headline3: TextStyle(
-                fontSize: 23,
-                color: Colors.amber,
-                letterSpacing: 1.5,
-
-              )
-            )
-          ),
+          theme: theme_globals.globalThemeData,
           //initialRoute: '/navigation',
 
 
