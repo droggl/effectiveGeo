@@ -19,9 +19,9 @@ class Country extends StatelessWidget {
 
         body: new Swiper(
           itemBuilder: (BuildContext context, int index) {
-            if(index == 0){
-              index=this.index;
-            }
+           // if(index == 0){
+             // index=this.index;
+            //}
 
 
             Map country = globals.filteredCountriesEnglish[index];
@@ -35,7 +35,7 @@ class Country extends StatelessWidget {
             return Scaffold(
 
               appBar: AppBar(
-                backgroundColor: Colors.grey[900],
+                backgroundColor: Theme.of(context).accentColor,
                 title: Text(
                   country["name"],
                   style: TextStyle(
@@ -58,22 +58,14 @@ class Country extends StatelessWidget {
                   ),
                   Text(
                     "Capital: " + country["capital"],
-                    style: TextStyle(
-                        letterSpacing: 2,
-                        fontSize: 18,
-                        color: Colors.white
-                    ),
+                    style: Theme.of(context).textTheme.headline4,
                   ),
                   SizedBox(
                       height: queryData.size.height / 20
                   ),
                   Text(
                     "Region: " + country["continent"],
-                    style: TextStyle(
-                        letterSpacing: 2,
-                        fontSize: 18,
-                        color: Colors.white
-                    ),
+                      style: Theme.of(context).textTheme.headline4
                   ),
                   SizedBox(
                       height: queryData.size.height / 20
@@ -81,11 +73,7 @@ class Country extends StatelessWidget {
 
                   Text(
                     "Population: " + country["population"],
-                    style: TextStyle(
-                        letterSpacing: 2,
-                        fontSize: 18,
-                        color: Colors.white
-                    ),
+                    style: Theme.of(context).textTheme.headline4,
                   ),
                 ],
               ),
@@ -99,8 +87,7 @@ class Country extends StatelessWidget {
           pagination: new SwiperPagination(
             builder: new FractionPaginationBuilder(
               color: Colors.black,
-              activeColor: Colors.amber,
-
+              activeColor: Theme.of(context).buttonColor,
             ),
 
           ),

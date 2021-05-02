@@ -24,7 +24,7 @@ class CountryCard extends StatelessWidget {
         );
       },
       child: Card(
-        color: Colors.grey[700],
+        color: Theme.of(context).primaryColor,
         //shadowColor: Colors.black,
         margin: EdgeInsets.fromLTRB(4, 4, 4, 4),
 
@@ -42,7 +42,7 @@ class CountryCard extends StatelessWidget {
                         child: Text(
                           country["name"],
                           style: TextStyle(
-                              color: Colors.amber,
+                              color: Theme.of(context).buttonColor,
                               fontSize: 17,
                               letterSpacing: 2
                           ),

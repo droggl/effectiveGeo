@@ -14,18 +14,15 @@ GetIt getIt = GetIt.instance;
 GetIt getKnownVocs = GetIt.instance;
 
 void main() {
-  print("klappt");
   getIt.registerSingleton<Counter>(Counter());   //Counter variable die sich die Anzahl der zu lernenden vocs merkt
-  print("kappt iwi safe nicht");
   getKnownVocs.registerSingleton<KnownCounter>(KnownCounter());  //Counter variable die sich die Anzahl der gelernter vocs merkt
-  print("klapp safe safe net");
   runApp(EffectiveGeo());
 }
 
 class EffectiveGeo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    theme_globals.globalThemeData = theme_globals.lightThemeData;
+    theme_globals.globalThemeData = theme_globals.darkThemeData;  //default theme
 
     return GestureDetector(
         onPanDown: (details) {

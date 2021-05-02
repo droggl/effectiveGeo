@@ -34,14 +34,14 @@ class _NavigationState extends State<Navigation> {
           onTap: _onItemClick,
           type:BottomNavigationBarType.fixed,
           backgroundColor: Theme.of(context).accentColor,
-          selectedItemColor: Colors.amber,
+          selectedItemColor: Theme.of(context).buttonColor,
           unselectedItemColor: Theme.of(context).primaryColor,
 
           items: [
             BottomNavigationBarItem(
               activeIcon: Icon(
                 Icons.home,
-                color: Colors.amber,
+                color: Theme.of(context).buttonColor,
                 size: 25,  //size rausnehmen
               ),
                 icon: Icon(Icons.home,
@@ -52,7 +52,7 @@ class _NavigationState extends State<Navigation> {
             BottomNavigationBarItem(
               activeIcon: Icon(
                 Icons.flag,
-                color: Colors.amber,
+                color: Theme.of(context).buttonColor,
                 size: 25,  //size rausnehmen
               ),
                 icon: Icon(Icons.flag,
@@ -64,7 +64,7 @@ class _NavigationState extends State<Navigation> {
             BottomNavigationBarItem(
                 activeIcon: Icon(
                   Icons.plus_one,
-                  color: Colors.amber,
+                  color: Theme.of(context).buttonColor,
                   size: 25,   //size rausnehmen
                 ),
                 icon: Icon(Icons.plus_one,

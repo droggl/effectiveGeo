@@ -138,8 +138,9 @@ class Home extends StatelessWidget{
 
               Image.asset("assets/welt.jpg",
                 width: queryData.size.height/2.1,
-                //height: queryData.size.height/1.5,
+                height: queryData.size.height/2.8,
               ),
+              //"assets/elena-mozhvilo-znhEe1cbbQE-unsplash.png",
 
 
               SizedBox(
@@ -171,7 +172,7 @@ class Home extends StatelessWidget{
                         minHeight: 15,
                         value: val,
                         backgroundColor: Colors.grey[900],
-                        valueColor:  new AlwaysStoppedAnimation<Color>(Colors.amber)
+                        valueColor:  new AlwaysStoppedAnimation<Color>(Theme.of(context).indicatorColor)
                     ),
                   );
                 },
@@ -191,7 +192,7 @@ class Home extends StatelessWidget{
 
                     return  Text(val.toString() + '%',
                       style: TextStyle(
-                          color: Colors.amber,
+                          color: Theme.of(context).buttonColor,
                           letterSpacing: 1,
                           fontSize: 18
                       ),

@@ -146,6 +146,7 @@ class _FlashcardState extends State<Flashcard> {
               height: buttonHeight,
               child: !showAnswer ?
               FlatButton(
+                color: Theme.of(context).bottomAppBarColor,
                 shape: RoundedRectangleBorder(
                   // borderRadius: BorderRadius.circular(5),
                   side: BorderSide(
@@ -157,12 +158,10 @@ class _FlashcardState extends State<Flashcard> {
                   showAnswer = true;
                   setState(() {});
                 },
-
-                color: buttonColor,
                 child: Text(
                     "Show answer",
                     style: TextStyle(
-                      color: Colors.amber,
+                      color: Theme.of(context).buttonColor,
                       fontSize: 11,  //23
                       letterSpacing: 3,
                     )
@@ -174,7 +173,7 @@ class _FlashcardState extends State<Flashcard> {
                   FlatButton(
                     height: buttonHeight,
                     minWidth: queryData.size.width / 4,
-                    color: buttonColor,
+                    color: Theme.of(context).bottomAppBarColor,
                     shape: RoundedRectangleBorder(
                       // borderRadius: BorderRadius.circular(5),
                       side: BorderSide(
@@ -198,7 +197,7 @@ class _FlashcardState extends State<Flashcard> {
                   FlatButton(
                     height: buttonHeight,
                     minWidth: queryData.size.width / 4,
-                    color: buttonColor,
+                    color: Theme.of(context).bottomAppBarColor,
                     shape: RoundedRectangleBorder(
                       // borderRadius: BorderRadius.circular(5),
                       side: BorderSide(
@@ -222,7 +221,7 @@ class _FlashcardState extends State<Flashcard> {
                   FlatButton(
                       height: buttonHeight,
                       minWidth: queryData.size.width / 4,
-                      color: buttonColor,
+                      color: Theme.of(context).bottomAppBarColor,
                       shape: RoundedRectangleBorder(
                         // borderRadius: BorderRadius.circular(5),
                         side: BorderSide(
@@ -246,7 +245,7 @@ class _FlashcardState extends State<Flashcard> {
                   FlatButton(
                     height: buttonHeight,
                     minWidth: queryData.size.width / 4,
-                    color: buttonColor,
+                    color: Theme.of(context).bottomAppBarColor,
                     shape: RoundedRectangleBorder(
                       // borderRadius: BorderRadius.circular(5),
                       side: BorderSide(

@@ -29,6 +29,7 @@ class _CountryTableState extends State<CountryTable> {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).accentColor,
         title:  Padding(
           padding: const EdgeInsets.all(4.0),
           child: TextField(
