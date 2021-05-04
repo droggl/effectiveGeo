@@ -1,5 +1,6 @@
 import 'package:rxdart/rxdart.dart';
 
+
 class Counter{
   BehaviorSubject _counter = BehaviorSubject.seeded(0);              //für die Anzahl der gerade zu lernenden Vokabeln
 
@@ -33,3 +34,4 @@ setZero(){
 }
 
 }
+

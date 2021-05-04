@@ -84,6 +84,9 @@ class _FlashcardState extends State<Flashcard> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
+        title: Text(
+          "daily cards"
+        ),
         backgroundColor: Theme.of(context).accentColor,
       ),
       body: Center(

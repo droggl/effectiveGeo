@@ -2,7 +2,6 @@ library effective_geo.theme_globals;
 
 import 'package:flutter/material.dart';
 
-ThemeData globalThemeData;
 
 ThemeData darkThemeData = ThemeData(
     primaryColor: Colors.grey[850],
@@ -82,40 +81,43 @@ ThemeData lightThemeData = ThemeData(
     )
 );
 
-ThemeData greenThemeData = ThemeData(
-    primaryColor: Colors.lightGreenAccent,
-    bottomAppBarColor: Colors.grey[850],  //Farbe für unteren Balken bei abfrage (hard/good/easy)
-    brightness: Brightness.dark,
-    accentColor: Colors.lightGreen,
-    cardColor: Colors.lightGreenAccent, //noch heller
-    buttonColor: Colors.green,   //wird für alle Texte verwendet
-    indicatorColor: Colors.amber,//wird für Progress Balken in home verwendet
-    textTheme: TextTheme(
-        headline1: TextStyle(
-          fontSize: 25,
-          color: Colors.green,
-          letterSpacing: 1.5,
-        ),
-        headline2: TextStyle(
-          fontSize: 23,
-          color: Colors.green,
-          letterSpacing: 1.5,
-        ),
-        headline3: TextStyle(
-          fontSize: 23,
-          color: Colors.green,
-          letterSpacing: 1.5,
 
-        ),
-        headline4: TextStyle(
-          fontSize: 18,
-          color: Colors.black,
-          letterSpacing: 1.5,
-        ),
-        headline5: TextStyle(
-          fontSize: 15,
-          color: Colors.amber,
-          letterSpacing: 1.5,
-        )
-    )
+ThemeData darkestThemeData = ThemeData(
+  primaryColor: Colors.black,
+  bottomAppBarColor: Colors.grey[900],  //Farbe für unteren Balken bei abfrage (hard/good/easy)
+  brightness: Brightness.dark,
+  accentColor: Colors.grey[900],
+  cardColor: Colors.grey[900],
+  buttonColor: Colors.white,  //wird für alle Texte verwendet
+  indicatorColor: Colors.white,//wird für Progress Balken in home verwendet
+  // cursorColor: Colors.amber,
+  textTheme: TextTheme(
+      headline1: TextStyle(
+        fontSize: 25,
+        color: Colors.white,
+        letterSpacing: 1.5,
+      ),
+      headline2: TextStyle(
+        fontSize: 23,
+        color: Colors.white,
+        letterSpacing: 1.5,
+      ),
+      headline3: TextStyle(
+        fontSize: 23,
+        color: Colors.white,
+        letterSpacing: 1.5,
+
+      ),
+      headline4: TextStyle(
+        fontSize: 18,
+        color: Colors.white,
+        letterSpacing: 1.5,
+      ),
+      headline5: TextStyle(
+        fontSize: 15,
+        color: Colors.white,
+        letterSpacing: 1.5,
+      )
+  ),
+
 );

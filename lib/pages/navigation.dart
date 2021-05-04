@@ -27,13 +27,13 @@ class _NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     return Scaffold(
         body:  routeList[currentIndex],
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).bottomAppBarColor,
 
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           onTap: _onItemClick,
           type:BottomNavigationBarType.fixed,
-          backgroundColor: Theme.of(context).accentColor,
+          backgroundColor: Theme.of(context).bottomAppBarColor,
           selectedItemColor: Theme.of(context).buttonColor,
           unselectedItemColor: Theme.of(context).primaryColor,
 
@@ -44,8 +44,11 @@ class _NavigationState extends State<Navigation> {
                 color: Theme.of(context).buttonColor,
                 size: 25,  //size rausnehmen
               ),
-                icon: Icon(Icons.home,
-                    color: Colors.grey[800]),
+                icon: Icon(
+                    Icons.home,
+                    color: Theme.of(context).primaryColor,
+                  size: 16,
+                ),
                 label: "home",
 
             ),
@@ -55,8 +58,10 @@ class _NavigationState extends State<Navigation> {
                 color: Theme.of(context).buttonColor,
                 size: 25,  //size rausnehmen
               ),
-                icon: Icon(Icons.flag,
-                  color: Colors.grey[800],
+                icon: Icon(
+                  Icons.flag,
+                  color: Theme.of(context).primaryColor,
+                  size: 16,
                 ),
                 label: "cards"
 
@@ -68,7 +73,10 @@ class _NavigationState extends State<Navigation> {
                   size: 25,   //size rausnehmen
                 ),
                 icon: Icon(Icons.plus_one,
-                  color: Colors.grey[800],),
+                  color: Theme.of(context).primaryColor,
+                  size: 16,
+                ),
+
                 label: "..."
 
             ),

@@ -136,11 +136,10 @@ class Home extends StatelessWidget{
 
 
 
-              Image.asset("assets/welt.jpg",
+              Image.asset("assets/elena-mozhvilo-znhEe1cbbQE-unsplash.png",//"assets/welt.jpg",
                 width: queryData.size.height/2.1,
                 height: queryData.size.height/2.8,
               ),
-              //"assets/elena-mozhvilo-znhEe1cbbQE-unsplash.png",
 
 
               SizedBox(

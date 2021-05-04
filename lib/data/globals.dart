@@ -1,5 +1,5 @@
 library effective_geo.globals;
-
+bool darkMode = true;
 List<Map> countriesEnglish = [];
 double progress = 0;
 int knownVocabs = 0;
