@@ -129,7 +129,7 @@ class _FlashcardState extends State<Flashcard> {
                 width: double.infinity,
                 height: queryData.size.height / 3,
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                   decoration: BoxDecoration(
                       color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -165,7 +165,7 @@ class _FlashcardState extends State<Flashcard> {
                     "Show answer",
                     style: TextStyle(
                       color: Theme.of(context).buttonColor,
-                      fontSize: 11,  //23
+                      fontSize: 18,  //23
                       letterSpacing: 3,
                     )
                 ),
