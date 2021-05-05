@@ -14,7 +14,9 @@ GetIt getIt = GetIt.instance;
 GetIt getKnownVocs = GetIt.instance;
 GetIt getTheme = GetIt.instance;
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppThemeDataMarker.init();
 
 
   getIt.registerSingleton<Counter>(Counter());   //Counter variable die sich die Anzahl der zu lernenden vocs merkt
@@ -40,11 +42,9 @@ class EffectiveGeo extends StatelessWidget {
           builder: (context, snapshot) {
             ThemeData val;
             if(!snapshot.hasData){
-              print('still waiting for data...');
               val = null;
             }
             else if(snapshot.hasData){
-              print('data received');
               val = snapshot.data;// aktuelles appTheme
             }
             return MaterialApp(

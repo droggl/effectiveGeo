@@ -1,9 +1,8 @@
 library effective_geo.theme_globals;
-
 import 'package:flutter/material.dart';
 
-
 ThemeData darkThemeData = ThemeData(
+  focusColor: Colors.amber,  // für navigation bar icons
     primaryColor: Colors.grey[850],
     bottomAppBarColor: Colors.grey[850],  //Farbe für unteren Balken bei abfrage (hard/good/easy)
     brightness: Brightness.dark,
@@ -44,6 +43,7 @@ ThemeData darkThemeData = ThemeData(
 );
 
 ThemeData lightThemeData = ThemeData(
+    focusColor: Colors.blueAccent,  // für navigation bar icons
     primaryColor: Colors.white,
     bottomAppBarColor: Colors.grey[800],  //Farbe für unteren Balken bei abfrage (hard/good/easy)
     brightness: Brightness.light,
@@ -83,6 +83,7 @@ ThemeData lightThemeData = ThemeData(
 
 
 ThemeData darkestThemeData = ThemeData(
+  focusColor: Colors.white, // für navigation bar icons
   primaryColor: Colors.black,
   bottomAppBarColor: Colors.grey[900],  //Farbe für unteren Balken bei abfrage (hard/good/easy)
   brightness: Brightness.dark,
@@ -121,3 +122,4 @@ ThemeData darkestThemeData = ThemeData(
   ),
 
 );
+

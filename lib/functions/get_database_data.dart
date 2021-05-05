@@ -11,17 +11,14 @@ void getData(BuildContext context) async{
 
   List<Map<String, dynamic>> countries = await DatabaseHelper.instance.queryAll();
 
-  if (countries.length > 0){  // wenn nich leer
+  if (countries.length > 0){  // wenn nicht leer
     globals.countriesEnglish = List.from(countries);
     globals.countriesEnglish.removeAt(countries.length-1);
 
     globals.filteredCountriesEnglish = List.from(countries);
     globals.filteredCountriesEnglish.removeAt(countries.length-1);
-
-    print("database already initialized!");
   }
   else{
-
     var response = await Dio().get("https://restcountries.eu/rest/v2/all");  //wenn leer
     List element = response.data;
     for(int i = 0; i<element.length; i++){  //250 mal
@@ -61,7 +58,6 @@ void getData(BuildContext context) async{
     },);
 
     countries = await DatabaseHelper.instance.queryAll();
-    print("database initialized!");
 
     globals.countriesEnglish = List.from(countries);
     globals.countriesEnglish.removeAt(countries.length-1);

@@ -13,6 +13,7 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+
   final themeMarker = getTheme.get<AppThemeDataMarker>();
   bool value = globals.darkMode;  //Zustand muss noch in Datenbank übernommen werden
   @override
@@ -48,9 +49,11 @@ class _SettingsState extends State<Settings> {
                   if(globals.darkMode){
                     globals.darkMode = false;
                     themeMarker.changeToLightTheme();
+                    AppThemeDataMarker.safeThemeState(false); //State von akuellem Theme wird in sharedPrefs gespeichert, funktion in  shared_preferences.dart
                   }else{
                     globals.darkMode = true;
                     themeMarker.changeToDarkTheme();
+                    AppThemeDataMarker.safeThemeState(true);      //State von akuellem Theme wird in sharedPrefs gespeichert, funktion in shared_preferences.dart
                   }
                   setState(() {});
                   },
@@ -78,6 +81,9 @@ class _SettingsState extends State<Settings> {
     );
   }
 }
+
+
+
 
 /*
 class Settings extends StatefulWidget {
