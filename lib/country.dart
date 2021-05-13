@@ -35,7 +35,11 @@ class Country extends StatelessWidget {
             return Scaffold(
 
               appBar: AppBar(
-                backgroundColor: Theme.of(context).accentColor,
+                backgroundColor: Theme.of(context).primaryColorDark,
+                brightness: Brightness.dark,
+                iconTheme: IconThemeData(
+                    color: Theme.of(context).primaryColor
+                ),
                 title: Text(
                   country["name"],
                   style: TextStyle(

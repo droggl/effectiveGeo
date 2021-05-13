@@ -20,63 +20,73 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).bottomAppBarColor,
+        brightness: Brightness.dark,
+        iconTheme: IconThemeData(
+            color: Theme.of(context).primaryColor
+        ),
+        backgroundColor: Theme.of(context).primaryColorDark,
         title: Text(
           "Settings",
-          style: Theme.of(context).textTheme.headline2
+          style: TextStyle(
+            color: Theme.of(context).primaryColor
+          ),
         ),
       ),
-      body: SettingsList(
-        sections: [
-          SettingsSection(
-            title: ' User interface',
-            titleTextStyle: TextStyle(
-              color: Theme.of(context).buttonColor,
-              fontSize: 18
-            ),
-            tiles: [
-              SettingsTile(
-                title: 'Language',
-                subtitle: 'English',
-                leading: Icon(Icons.language),
-                onPressed: (BuildContext context) {},
-              ),
-              SettingsTile.switchTile(
-                title: 'Darkmode on',
-                leading: Icon(Icons.lightbulb),
-                switchValue: globals.darkMode,
-                onToggle: (bool value) {
-                  if(globals.darkMode){
-                    globals.darkMode = false;
-                    themeMarker.changeToLightTheme();
-                    AppThemeDataMarker.safeThemeState(false); //State von akuellem Theme wird in sharedPrefs gespeichert, funktion in  shared_preferences.dart
-                  }else{
-                    globals.darkMode = true;
-                    themeMarker.changeToDarkTheme();
-                    AppThemeDataMarker.safeThemeState(true);      //State von akuellem Theme wird in sharedPrefs gespeichert, funktion in shared_preferences.dart
-                  }
-                  setState(() {});
-                  },
-              ),
-            ],
-          ),
-          SettingsSection(
-            title: 'test',
-            titleTextStyle: TextStyle(
-                color: Theme.of(context).buttonColor,
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+        child: SettingsList(
+          lightBackgroundColor: Theme.of(context).primaryColor,
+          sections: [
+            SettingsSection(
+              title: ' User interface',
+              titleTextStyle: TextStyle(
+                color: Theme.of(context).focusColor,
                 fontSize: 18
-            ),
-            tiles: [
-              SettingsTile.switchTile(
-                title: 'ist das ein tolles settings ui?',
-                leading: Icon(Icons.colorize_outlined),
-                switchValue: true,
-                onToggle: (bool value) {},
               ),
-            ],
+              tiles: [
+                SettingsTile(
+                  title: 'Language',
+                  subtitle: 'English',
+                  leading: Icon(Icons.language),
+                  onPressed: (BuildContext context) {},
+                ),
+                SettingsTile.switchTile(
+                  title: 'Darkmode on',
+                  leading: Icon(Icons.lightbulb),
+                  switchValue: globals.darkMode,
+                  onToggle: (bool value) {
+                    if(globals.darkMode){
+                      globals.darkMode = false;
+                      themeMarker.changeToLightTheme();
+                      AppThemeDataMarker.safeThemeState(false); //State von akuellem Theme wird in sharedPrefs gespeichert, funktion in  shared_preferences.dart
+                    }else{
+                      globals.darkMode = true;
+                      themeMarker.changeToDarkTheme();
+                      AppThemeDataMarker.safeThemeState(true);      //State von akuellem Theme wird in sharedPrefs gespeichert, funktion in shared_preferences.dart
+                    }
+                    setState(() {});
+                    },
+                ),
+              ],
+            ),
+            SettingsSection(
+              title: 'Test',
+              titleTextStyle: TextStyle(
+                  color: Theme.of(context).focusColor,
+                  fontSize: 18
+              ),
+              tiles: [
+                SettingsTile.switchTile(
+                  title: 'ist das ein tolles settings ui?',
+                  leading: Icon(Icons.colorize_outlined),
+                  switchValue: true,
+                  onToggle: (bool value) {},
+                ),
+              ],
 
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

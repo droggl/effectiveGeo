@@ -19,58 +19,55 @@ class Home extends StatelessWidget{
 
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Theme.of(context).primaryColorDark,
+        brightness: Brightness.dark,
+        iconTheme: IconThemeData(
+            color: Theme.of(context).primaryColor
+        ),
+        title: Text(
+          "effective geo",
+          style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontSize: 26
+          ),
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.settings,
+              color: Theme.of(context).primaryColor,
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, "/settings");
+            },
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
             children: [
               SizedBox(
                 height: spaceFive,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: SizedBox(
 
-                    ),
-                    flex: 1,
-                  ),
+              SizedBox(
+                height: queryData.size.height/13,
+              ),
 
-                  Expanded(
-                    flex: 2,
-                    child: SafeArea(
-                      child: Text(
-                        "Effective Geo",
-                        style: Theme.of(context).textTheme.headline2
-                      ),
+              // Image.network("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-1.2."
+              //     "1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"),
 
-                    ),
-                  ),
-
-                  Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(spaceOne, 0, 0, 0),
-                      child: SafeArea(
-                        child: IconButton(
-                          onPressed: (){
-                            Navigator.pushNamed(context, "/settings");
-                          },
-                          icon: Icon(
-                            Icons.settings,
-                            color: Colors.grey,
-                            size: 35,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              Image.asset("assets/map_colored.png",//"assets/welt.jpg",
+                width: queryData.size.height/2.5,
+                height: queryData.size.height/3,
               ),
 
               SizedBox(
-                height: queryData.size.height/11,
-
+                height: queryData.size.height/20,
               ),
+
 
               Row(
                 children: [
@@ -85,12 +82,9 @@ class Home extends StatelessWidget{
                     child: RaisedButton(
                       padding: EdgeInsets.fromLTRB(spaceThree, spaceThree, spaceThree, spaceThree),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: BorderSide(
-                              color: Theme.of(context).buttonColor
-                          )
+                          borderRadius: BorderRadius.circular(5),
                       ),
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).buttonColor,
                       onPressed: () {
                         Navigator.pushNamed(context, "/flashcard");
                         //setState(() {});
@@ -98,7 +92,7 @@ class Home extends StatelessWidget{
                       child: Text(
                         "Start Learning",
                         style: TextStyle(
-                            color: Theme.of(context).buttonColor,
+                            color: Colors.white, //Color(0xFF477902),// Theme.of(context).buttonColor,
                             fontSize: 25,
                             letterSpacing: 1.5
                         ),
@@ -128,22 +122,7 @@ class Home extends StatelessWidget{
               ),
 
               SizedBox(
-                height: queryData.size.height/25,
-              ),
-
-              // Image.network("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-1.2."
-              //     "1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"),
-
-
-
-              Image.asset("assets/elena-mozhvilo-znhEe1cbbQE-unsplash.png",//"assets/welt.jpg",
-                width: queryData.size.height/2.1,
-                height: queryData.size.height/2.8,
-              ),
-
-
-              SizedBox(
-                height: queryData.size.height/40,
+                height: queryData.size.height/15,
               ),
 
               Text(

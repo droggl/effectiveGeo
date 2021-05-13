@@ -35,7 +35,7 @@ class _NavigationState extends State<Navigation> {
           type:BottomNavigationBarType.fixed,
           backgroundColor: Theme.of(context).bottomAppBarColor,
           selectedItemColor: Theme.of(context).focusColor,
-          unselectedItemColor: Theme.of(context).primaryColor,
+          unselectedItemColor: Colors.grey[500], //Theme.of(context).primaryColor,
 
           items: [
             BottomNavigationBarItem(
@@ -46,7 +46,7 @@ class _NavigationState extends State<Navigation> {
               ),
                 icon: Icon(
                     Icons.home,
-                    color: Theme.of(context).primaryColor,
+                    color: Colors.grey[500], //Theme.of(context).primaryColor,
                   size: 16,
                 ),
                 label: "home",
@@ -60,7 +60,7 @@ class _NavigationState extends State<Navigation> {
               ),
                 icon: Icon(
                   Icons.flag,
-                  color: Theme.of(context).primaryColor,
+                  color: Colors.grey[500], //Theme.of(context).primaryColor,
                   size: 16,
                 ),
                 label: "cards"
@@ -73,7 +73,7 @@ class _NavigationState extends State<Navigation> {
                   size: 25,   //size rausnehmen
                 ),
                 icon: Icon(Icons.plus_one,
-                  color: Theme.of(context).primaryColor,
+                  color: Colors.grey[500], //Theme.of(context).primaryColor,
                   size: 16,
                 ),
 

@@ -1,4 +1,5 @@
 import 'package:effective_geo/functions/extract_learning_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:effective_geo/database_helper.dart';
 import 'package:effective_geo/functions/sm_algorithm/sm.dart';
@@ -9,6 +10,7 @@ import '../main.dart';
 double fontSizeEvaluation = 15;
 dynamic buttonColor = Colors.grey[900];
 double buttonHeight = 65;
+const double buttonPadding = 3;
 
 class Flashcard extends StatefulWidget {
   @override
@@ -84,41 +86,50 @@ class _FlashcardState extends State<Flashcard> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        title: Text(
-          "daily cards"
+        brightness: Brightness.dark,
+        iconTheme: IconThemeData(
+            color: Theme.of(context).primaryColor
         ),
-        backgroundColor: Theme.of(context).accentColor,
+        title: Text(
+          "daily cards",
+          style: TextStyle(
+            color: Theme.of(context).primaryColor
+          ),
+        ),
+        backgroundColor: Theme.of(context).primaryColorDark,
       ),
+
       body: Center(
         child: done? Text(
           "Done for today",
           style: TextStyle(
               color: Theme.of( context).buttonColor
           ),
-        ) : Column(
+        ) :
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             SizedBox(),
 
+            // FRAGE
             SizedBox(
               width: double.infinity,
               height: queryData.size.height / 3,
               child: Container(
                 margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                 decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,  //
+                    color: Colors.grey[100],// Theme.of(context).cardColor,  //
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 child: Center(
                   child: Text(
-
                     globals.learnList[0]["name"],
-                    style: Theme.of(context).textTheme.headline2
-
+                    style: Theme.of(context).textTheme.headline1
                   ),
                 ),
               ),
             ),
 
+            // LÖSUNG
             Visibility(
               visible: showAnswer,
               maintainSize: true,
@@ -131,12 +142,12 @@ class _FlashcardState extends State<Flashcard> {
                 child: Container(
                   margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                   decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
+                      color: Colors.grey[100], //Theme.of(context).cardColor,
                       borderRadius: BorderRadius.all(Radius.circular(5))),
                   child: Center(
                     child: Text(
                       globals.learnList[0]["capital"],
-                      style: Theme.of(context).textTheme.headline2, // 3
+                      style: Theme.of(context).textTheme.headline1, // 3
 
                     ),
                   ),
@@ -144,127 +155,136 @@ class _FlashcardState extends State<Flashcard> {
               ),
             ),
 
+            // BUTTONS
             SizedBox(
               width: double.infinity,
               height: buttonHeight,
               child: !showAnswer ?
-              FlatButton(
-                color: Theme.of(context).bottomAppBarColor,
-                shape: RoundedRectangleBorder(
-                  // borderRadius: BorderRadius.circular(5),
-                  side: BorderSide(
-                    color: Colors.black,
 
+              Padding(
+                padding: const EdgeInsets.all(buttonPadding),
+                child: ElevatedButton(
+                  onPressed: () {
+                    showAnswer = true;
+                    setState(() {});
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).buttonColor,
+                    onPrimary: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  showAnswer = true;
-                  setState(() {});
-                },
-                child: Text(
-                    "Show answer",
-                    style: TextStyle(
-                      color: Theme.of(context).buttonColor,
-                      fontSize: 18,  //23
-                      letterSpacing: 3,
-                    )
+
+                  child: Text(
+                      "Show answer",
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontSize: 18,  //23
+                        letterSpacing: 3,
+                      )
+                  ),
                 ),
               )
                   :
               Row(
                 children: <Widget> [
-                  FlatButton(
-                    height: buttonHeight,
-                    minWidth: queryData.size.width / 4,
-                    color: Theme.of(context).bottomAppBarColor,
-                    shape: RoundedRectangleBorder(
-                      // borderRadius: BorderRadius.circular(5),
-                      side: BorderSide(
-                        color: Colors.black,
-
-                      ),
-                    ),
-                    onPressed: () {
-                      rateCard(0, tempList);
-                    },
-                    child: Text(
-                      "<10min\nAgain",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontSize: fontSizeEvaluation,
-                      ),
-                    ),
-                  ),
-
-                  FlatButton(
-                    height: buttonHeight,
-                    minWidth: queryData.size.width / 4,
-                    color: Theme.of(context).bottomAppBarColor,
-                    shape: RoundedRectangleBorder(
-                      // borderRadius: BorderRadius.circular(5),
-                      side: BorderSide(
-                        color: Colors.black,
-
-                      ),
-                    ),
-                    onPressed: () {
-                      rateCard(3, tempList);
-                    },
-                    child: Text(
-                      "Hard",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.amber,
-                        fontSize: fontSizeEvaluation,
-                      ),
-                    ),
-                  ),
-
-                  FlatButton(
-                      height: buttonHeight,
-                      minWidth: queryData.size.width / 4,
-                      color: Theme.of(context).bottomAppBarColor,
-                      shape: RoundedRectangleBorder(
-                        // borderRadius: BorderRadius.circular(5),
-                        side: BorderSide(
-                          color: Colors.black,
-
-                        ),
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.all(buttonPadding),
+                    child: ElevatedButton(
                       onPressed: () {
-                        rateCard(4, tempList);
+                        rateCard(0, tempList);
                       },
                       child: Text(
-                        "Good",
+                        "<10min\nAgain",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Colors.green,
+                          color: Theme.of(context).primaryColor, // Colors.red,
                           fontSize: fontSizeEvaluation,
                         ),
-                      )
-                  ),
-
-                  FlatButton(
-                    height: buttonHeight,
-                    minWidth: queryData.size.width / 4,
-                    color: Theme.of(context).bottomAppBarColor,
-                    shape: RoundedRectangleBorder(
-                      // borderRadius: BorderRadius.circular(5),
-                      side: BorderSide(
-                        color: Colors.black,
-
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.red,
+                        onPrimary: Theme.of(context).primaryColor,
+                        minimumSize: Size(queryData.size.width / 4 - buttonPadding*2, buttonHeight),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                       ),
                     ),
-                    onPressed: () {
-                      rateCard(5, tempList);
-                    },
-                    child: Text(
-                      "Easy",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: fontSizeEvaluation,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(buttonPadding),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        rateCard(3, tempList);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.amber,
+                        onPrimary: Theme.of(context).primaryColor,
+                        minimumSize: Size(queryData.size.width / 4 - buttonPadding*2, buttonHeight),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      child: Text(
+                        "Hard",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: fontSizeEvaluation,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(buttonPadding),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          rateCard(4, tempList);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.green,
+                          onPrimary: Theme.of(context).primaryColor,
+                          minimumSize: Size(queryData.size.width / 4 - buttonPadding*2, buttonHeight),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        child: Text(
+                          "Good",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: fontSizeEvaluation,
+                          ),
+                        )
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(buttonPadding),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        rateCard(5, tempList);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blue,
+                        onPrimary: Theme.of(context).primaryColor,
+                        minimumSize: Size(queryData.size.width / 4 - buttonPadding*2, buttonHeight),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      child: Text(
+                        "Easy",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: fontSizeEvaluation,
+                        ),
                       ),
                     ),
                   )
