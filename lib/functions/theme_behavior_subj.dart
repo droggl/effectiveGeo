@@ -4,7 +4,7 @@ import 'package:effective_geo/data/globals.dart' as globals;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppThemeDataMarker {
-  BehaviorSubject _themeMarker = BehaviorSubject.seeded(theme_globals.darkestThemeData);  //shared prefs müssen beigefügt werden !
+  BehaviorSubject _themeMarker = BehaviorSubject.seeded(theme_globals.lightThemeData);  //shared prefs müssen beigefügt werden !
   Stream get themeMarkerStream$ => _themeMarker.stream;
   bool get currentTheme => _themeMarker.value;
   static SharedPreferences _prefs;
@@ -17,11 +17,11 @@ class AppThemeDataMarker {
     _getSafedState();
   }
   changeToDarkTheme(){
-    _themeMarker.add(theme_globals.darkestThemeData);
+    _themeMarker.add(theme_globals.cleanThemeData);
   }
 
   changeToLightTheme(){
-    _themeMarker.add(theme_globals.lightThemeData);
+    _themeMarker.add(theme_globals.cleanThemeData);
   }
 
    Future<void> _getSafedState() async{

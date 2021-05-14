@@ -20,13 +20,13 @@ void initState() {
   @override
   Widget build(BuildContext context) {     //Loading Screen
     return Scaffold(
-      backgroundColor: Colors.grey[900],
-      body: Center(
-        child: SpinKitFoldingCube(
-          color: Colors.amber,
-          size: 50.0,
-        ),
-      ),
+      backgroundColor: Colors.white,
+      // body: Center(
+      //   child:
+      //     Image.asset(
+      //       "assets/icon.png",
+      //     ),
+      // ),
     );
   }
 

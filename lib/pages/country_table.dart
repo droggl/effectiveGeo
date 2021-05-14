@@ -27,9 +27,10 @@ class _CountryTableState extends State<CountryTable> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Theme.of(context).accentColor,
+      // backgroundColor: Theme.of(context).primaryColorDark,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).accentColor,
+        backgroundColor: Theme.of(context).primaryColorDark,
+        brightness: Brightness.dark,
         title:  Padding(
           padding: const EdgeInsets.all(4.0),
           child: TextField(
