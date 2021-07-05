@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:effective_geo/data/globals.dart' as globals;
+//import 'package:effective_geo/data/globals.dart' as globals;
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class Country extends StatelessWidget {
   final int index;
-  Country({this.index});   //index wird über Konstruktor instanziiert
+  final List<Map> filteredCountriesEnglish;
+  Country({this.index, this.filteredCountriesEnglish,});   //index wird über Konstruktor instanziiert
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class Country extends StatelessWidget {
             //}
 
 
-            Map country = globals.filteredCountriesEnglish[index];
+            Map country = filteredCountriesEnglish[index]; //davor globals.
             String img = country["code"];
             if (img != null) {
               String a = img[0].toLowerCase();
@@ -86,7 +87,7 @@ class Country extends StatelessWidget {
 
           //indicatorLayout: PageIndicatorLayout.COLOR,
           //autoplay: true,
-          itemCount: globals.filteredCountriesEnglish.length,
+          itemCount: filteredCountriesEnglish.length, //davor globals.
           index: this.index,
           pagination: new SwiperPagination(
             builder: new FractionPaginationBuilder(
@@ -95,7 +96,9 @@ class Country extends StatelessWidget {
             ),
 
           ),
-          control: new SwiperControl(),
+          control: new SwiperControl(
+            color: Theme.of(context).buttonColor //wenns net gefällt bidde nur auskommentieren
+          ),
         )
     );
 

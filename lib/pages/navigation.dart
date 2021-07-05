@@ -1,5 +1,6 @@
 import 'package:effective_geo/pages/country_table.dart';
 import 'package:effective_geo/pages/home.dart';
+import 'package:effective_geo/pages/statistics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   int currentIndex = 0;
 
-  void _onItemClick(int idx){
+  void _onItemClick(int idx) {
     setState(() {
       currentIndex = idx;
     });
@@ -20,68 +21,63 @@ class _NavigationState extends State<Navigation> {
   List<Widget> routeList = <Widget>[
     Home(),
     CountryTable(),
-    Center(child:Text("coming soon"))
+    Statistics()
+    //Center(child:Text("coming soon"))
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body:  routeList[currentIndex],
+        body: routeList[currentIndex],
         backgroundColor: Theme.of(context).bottomAppBarColor,
-
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           onTap: _onItemClick,
-          type:BottomNavigationBarType.fixed,
+          type: BottomNavigationBarType.fixed,
           backgroundColor: Theme.of(context).bottomAppBarColor,
           selectedItemColor: Theme.of(context).focusColor,
-          unselectedItemColor: Colors.grey[500], //Theme.of(context).primaryColor,
+          unselectedItemColor: Colors.grey[500],
+          //Theme.of(context).primaryColor,
 
           items: [
             BottomNavigationBarItem(
               activeIcon: Icon(
                 Icons.home,
                 color: Theme.of(context).focusColor,
-                size: 25,  //size rausnehmen
+                size: 25, //size rausnehmen
               ),
-                icon: Icon(
-                    Icons.home,
-                    color: Colors.grey[500], //Theme.of(context).primaryColor,
-                  size: 16,
-                ),
-                label: "home",
-
+              icon: Icon(
+                Icons.home,
+                color: Colors.grey[500], //Theme.of(context).primaryColor,
+                size: 16,
+              ),
+              label: "home",
             ),
             BottomNavigationBarItem(
-              activeIcon: Icon(
-                Icons.flag,
-                color: Theme.of(context).focusColor,
-                size: 25,  //size rausnehmen
-              ),
+                activeIcon: Icon(
+                  Icons.flag,
+                  color: Theme.of(context).focusColor,
+                  size: 25, //size rausnehmen
+                ),
                 icon: Icon(
                   Icons.flag,
                   color: Colors.grey[500], //Theme.of(context).primaryColor,
                   size: 16,
                 ),
-                label: "cards"
-
-            ),
+                label: "cards"),
             BottomNavigationBarItem(
                 activeIcon: Icon(
-                  Icons.plus_one,
+                  Icons.bar_chart,
                   color: Theme.of(context).focusColor,
-                  size: 25,   //size rausnehmen
+                  size: 25, //size rausnehmen
                 ),
-                icon: Icon(Icons.plus_one,
+                icon: Icon(
+                  Icons.bar_chart,
                   color: Colors.grey[500], //Theme.of(context).primaryColor,
                   size: 16,
                 ),
-
-                label: "..."
-
-            ),
+                label: "stats"),
           ],
-        )
-    );
+        ));
   }
 }

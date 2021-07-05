@@ -5,7 +5,6 @@ import '../main.dart';
 
 class Home extends StatelessWidget{
 
-  //final int prozent = (globals.progress*100).round();
   final vocabCounter = getIt.get<Counter>();
   final knownVocabCounter = getKnownVocs.get<KnownCounter>();
 
@@ -142,7 +141,7 @@ class Home extends StatelessWidget{
                   }
                     else if(snapshot.hasData){
                       print('data received');
-                      val = snapshot.data/256;// 265 entspricht der Anzahl aller vokabeln also 100%
+                      val = snapshot.data/250;// 265 entspricht der Anzahl aller vokabeln also 100%
                   }
                   return Padding(
                     padding: EdgeInsets.fromLTRB(spaceOne, 0, spaceOne, 0),
@@ -165,7 +164,7 @@ class Home extends StatelessWidget{
                       print('still waiting for data...');
                     }
                     else if(snapshot.hasData){
-                      val = (snapshot.data/256*100).round();
+                      val = (snapshot.data/250*100).round();
                     }
 
                     return  Text(val.toString() + '%',

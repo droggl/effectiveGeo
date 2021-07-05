@@ -6,19 +6,20 @@ import 'package:effective_geo/data/globals.dart'as globals;
 class CountryCard extends StatelessWidget {
 
   final int index;
-  CountryCard({this.index});
+  final List<Map> filteredCountriesEnglish;
+  CountryCard({this.index, this.filteredCountriesEnglish});
 
 
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData = MediaQuery.of(context);
     double spaceOne = queryData.size.height/5;
-    Map country = globals.filteredCountriesEnglish[index];
+    Map country = filteredCountriesEnglish[index]; //davor global.filteredCountriesEnglish
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context){
-              return Country(index: index);
+              return Country(index: index, filteredCountriesEnglish: filteredCountriesEnglish,);
             }
         )
         );

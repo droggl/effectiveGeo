@@ -2,7 +2,7 @@ import '../database_helper.dart';
 import 'activate_new_elements.dart';
 import 'package:effective_geo/main.dart';
 import 'package:effective_geo/functions/voc_counter.dart';
-//import 'package:effective_geo/data/globals.dart' as globals;
+import 'package:effective_geo/data/globals.dart' as globals;
 
 
 Future<List<Map>> extractLearningList(List<Map>list) async{
@@ -10,6 +10,7 @@ Future<List<Map>> extractLearningList(List<Map>list) async{
   knownVocabCounter.setZero();
   List<Map> completeList = List.from(list);
   List<Map> removeList = List.from(list);
+  List<Map> learnedListLocal = [];
   List<Map>erg = [];
 
   int idx = 0;
@@ -24,11 +25,12 @@ Future<List<Map>> extractLearningList(List<Map>list) async{
         Map val = removeList.removeAt(idx);
         erg.add(val);
       }else {
-        var a = removeList.removeAt(idx); //alle Vokabeln die sich bereits im Lernzyklus befinden werden aus
+        var element = removeList.removeAt(idx); //alle Vokabeln die sich bereits im Lernzyklus befinden werden aus
         // temporärer Liste entfern, damit sie bei der Auswahl der neuen Vokabeln
         //keine Rolle spielen
        // globals.knownVocabs += 1;  //globale Vokabel
         //globals.progress = globals.knownVocabs/completeList.length;
+        learnedListLocal.add(element); //list mit den gelernten vokabeln
         knownVocabCounter.incrementKnownVocs();  //wird inkrementiert für Progess Anzeige auf home screen
       }
       idx-=1;   //durch remove muss Liste immer angepasst werden
@@ -36,8 +38,10 @@ Future<List<Map>> extractLearningList(List<Map>list) async{
     idx+=1;
   }
 
-  print(completeList.elementAt(completeList.length-1));
-  print(currentTimeInMinutes());
+  globals.learnedList = List.from(learnedListLocal);
+
+  //print(completeList.elementAt(completeList.length-1));
+  //print(currentTimeInMinutes());
   if(completeList.elementAt(completeList.length-1)["time"] < currentTimeInMinutes()) {   //wenn zeit für neue vokabeln zu lernen (24 Stunden nach letzter Nutzung der App) und
     int n = 10;
     List getNewElements = await activateNewElements(removeList, n);

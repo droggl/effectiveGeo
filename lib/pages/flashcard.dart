@@ -60,7 +60,8 @@ class _FlashcardState extends State<Flashcard> {
     print(smResponse.interval);
 
     showAnswer = false;
-    tempList.removeAt(0);
+    var element = tempList.removeAt(0);
+    globals.learnedList.add(element);
     if(tempList.length==0){
       done = true;
     }

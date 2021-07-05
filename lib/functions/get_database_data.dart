@@ -7,7 +7,7 @@ import '../main.dart';
 import 'package:effective_geo/functions/voc_counter.dart';
 import 'package:effective_geo/data/globals.dart' as globals;
 
-void getData(BuildContext context) async{
+ void getData() async{
 
   List<Map<String, dynamic>> countries = await DatabaseHelper.instance.queryAll();
 
@@ -71,5 +71,5 @@ void getData(BuildContext context) async{
   vocabCounter.set(globals.learnList.length);               //Anzahl der zu lernenden vokabeln wird gesetzt
   //vocCount = learnList.length;
 
-  Navigator.pushReplacementNamed(context, '/navigation');
+  //Navigator.pushReplacementNamed(context, '/navigation');
 }

@@ -62,7 +62,7 @@ class _CountryTableState extends State<CountryTable> {
         child: ListView.builder(
           itemCount: globals.filteredCountriesEnglish.length,
           itemBuilder: (context, index){
-            return CountryCard(index: index);
+            return CountryCard(index: index, filteredCountriesEnglish: globals.filteredCountriesEnglish);
           },
         ),
       ),

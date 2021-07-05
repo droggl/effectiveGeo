@@ -13,7 +13,7 @@ class _LoadingState extends State<Loading> {
 @override
 void initState() {
     super.initState();
-    getData(context);
+    getData();
   }
 
 
@@ -21,12 +21,12 @@ void initState() {
   Widget build(BuildContext context) {     //Loading Screen
     return Scaffold(
       backgroundColor: Colors.white,
-      // body: Center(
-      //   child:
-      //     Image.asset(
-      //       "assets/icon.png",
-      //     ),
-      // ),
+       //body: Center(
+         //child:
+           //Image.asset(
+             //"assets/map_colored.png",
+           //),
+       //),
     );
   }
 

@@ -7,7 +7,11 @@ import 'package:effective_geo/pages/loading.dart';
 import 'package:effective_geo/pages/settings.dart';
 import 'package:effective_geo/pages/navigation.dart';
 import 'package:effective_geo/pages/flashcard.dart';
+import 'package:effective_geo/pages/statistics.dart';
 import 'package:get_it/get_it.dart';
+import 'package:effective_geo/pages/countrys_statistics_table.dart';
+
+import 'functions/get_database_data.dart';
 
 //global ServiceLocator
 GetIt getIt = GetIt.instance;
@@ -17,18 +21,21 @@ GetIt getTheme = GetIt.instance;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await AppThemeDataMarker.init();
-
-
   getIt.registerSingleton<Counter>(Counter());   //Counter variable die sich die Anzahl der zu lernenden vocs merkt
   getKnownVocs.registerSingleton<KnownCounter>(KnownCounter());  //Counter variable die sich die Anzahl der gelernter vocs merkt
   getTheme.registerSingleton<AppThemeDataMarker>(AppThemeDataMarker()); //merkt sich aktulles Theme
+  await getData();
   runApp(EffectiveGeo());
 }
 
 class EffectiveGeo extends StatelessWidget {
   final themeMarker = getTheme.get<AppThemeDataMarker>();
+
   @override
   Widget build(BuildContext context) {
+
+    //getData(context); //könnte daneben gehen hieeeeeeeeeeeeeeeeeeer!
+
 
     return GestureDetector(
         onPanDown: (details) {
@@ -54,12 +61,14 @@ class EffectiveGeo extends StatelessWidget {
 
 
               routes: {
-                '/': (context) => Loading(),
+                '/': (context) => Navigation(),//Loading(), //hoffe des funktioniert auch
                 '/home': (context) => Home(),
                 '/settings': (context) => Settings(),
                 '/country_table': (context) => CountryTable(),
                 '/navigation': (context) => Navigation(),
                 '/flashcard': (context) => Flashcard(),
+                '/statistics':(context) => Statistics(),
+                '/statistics_table':(context) => StatsTable()
 
               },
             );
